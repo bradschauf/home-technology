@@ -1,3 +1,6 @@
+# Current network diagram
+
+```mermaid
 flowchart TB
     Internet((Internet))
     Modem[Cable Modem]
@@ -12,3 +15,4 @@ flowchart TB
     DecoMain --> DecoNode1
     DecoMain --> DecoNode2
     DecoMain --> Clients
+```
