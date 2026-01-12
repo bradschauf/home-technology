@@ -1,18 +1,37 @@
-# Current network diagram
-
+# Current Network Diagram
 ```mermaid
 flowchart TB
-    Internet((Internet from Xfinity))
-    Modem[White Cable Modem]
-    Firewalla["Firewalla Purple SE<br/>Router / Firewall / DHCP"]
-    Switch["LAN Switch<br/>(Optional)"]
-    DecoMain["Deco X55<br/>Primary Node - Family Room<br/>(AP Mode)"]
-    DecoNode1["Deco X55<br/>Mesh Node 1 - Office<br/>(AP Mode)"]
-    DecoNode2["Deco X55<br/>Mesh Node 2 - Garage<br/>(AP Mode)"]
-    Clients["Client Devices<br/>(TVs, Phones, Laptops, IoT)"]
+    %% ===== Zones =====
+    subgraph WAN_ZONE["Untrusted / ISP Network"]
+        Internet((Internet))
+        Modem[Cable Modem]
+    end
 
-    Internet --> Modem --> Firewalla --> Switch --> DecoMain
-    DecoMain --> DecoNode1
-    DecoMain --> DecoNode2
-    DecoMain --> Clients
+    subgraph TRUST_BOUNDARY["Security Boundary<br/>(NAT / Firewall / DHCP)"]
+        Firewalla["Firewalla Purple SE<br/>Router / Firewall / DHCP"]
+    end
+
+    subgraph LAN_ZONE["Trusted Home Network"]
+        Switch["LAN Switch<br/>(Optional)"]
+        DecoMain["Deco X55<br/>Primary Node<br/>(AP Mode)"]
+        DecoNode1["Deco X55<br/>Mesh Node 1<br/>(AP Mode)"]
+        DecoNode2["Deco X55<br/>Mesh Node 2<br/>(AP Mode)"]
+        Clients["Client Devices"]
+    end
+
+    %% ===== Links =====
+    Internet -->|ISP| Modem
+    Modem -->|WAN| Firewalla
+    Firewalla -->|LAN| Switch
+    Switch -->|Ethernet| DecoMain
+    DecoMain -.->|Mesh Backhaul| DecoNode1
+    DecoMain -.->|Mesh Backhaul| DecoNode2
+    DecoMain -.->|Wi-Fi| Clients
+
+    %% ===== Legend =====
+    subgraph LEGEND["Legend"]
+        L1["Solid Arrow →  Wired Ethernet"]
+        L2["Dotted Arrow ⇢  Wireless / Mesh"]
+        L3["Security Boundary = Routing, NAT, DHCP enforced"]
+    end
 ```
