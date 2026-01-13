@@ -36,13 +36,6 @@ flowchart TB
     DecoNode1 <-.->|Wi-Fi Access| ClientsNode1
     DecoNode2 <-.->|Wi-Fi Access| ClientsNode2
 
-    %% ===== Legend =====
-    subgraph LEGEND["Legend"]
-        L1["Solid Arrow -> Wired Ethernet"]
-        L2["Dotted Arrow -> Wi-Fi client access"]
-        L3["Security Boundary = Routing, NAT, firewalling, DHCP"]
-        L4["Ethernet Backhaul = No wireless mesh links"]
-    end
 ```
 
 # Implementation--
