@@ -24,13 +24,13 @@ flowchart TB
     end
 
     %% ===== Links =====
-    Internet -->|ISP| Modem
-    Modem -->|WAN| Firewalla
-    Firewalla -->|LAN| Switch
+    Internet <-->|ISP| Modem
+    Modem <-->|WAN| Firewalla
+    Firewalla <-->|LAN| Switch
 
-    Switch -->|Ethernet Backhaul| DecoMain
-    Switch -->|Ethernet Backhaul| DecoNode1
-    Switch -->|Ethernet Backhaul| DecoNode2
+    Switch <-->|Ethernet Backhaul| DecoMain
+    Switch <-->|Ethernet Backhaul| DecoNode1
+    Switch <-->|Ethernet Backhaul| DecoNode2
 
     DecoMain -.->|Wi-Fi Access| ClientsMain
     DecoNode1 -.->|Wi-Fi Access| ClientsNode1
