@@ -32,9 +32,9 @@ flowchart TB
     Switch <-->|Ethernet Backhaul| DecoNode1
     Switch <-->|Ethernet Backhaul| DecoNode2
 
-    DecoMain -.->|Wi-Fi Access| ClientsMain
-    DecoNode1 -.->|Wi-Fi Access| ClientsNode1
-    DecoNode2 -.->|Wi-Fi Access| ClientsNode2
+    DecoMain <-.->|Wi-Fi Access| ClientsMain
+    DecoNode1 <-.->|Wi-Fi Access| ClientsNode1
+    DecoNode2 <-.->|Wi-Fi Access| ClientsNode2
 
     %% ===== Legend =====
     subgraph LEGEND["Legend"]
