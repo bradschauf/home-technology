@@ -32,9 +32,9 @@ flowchart TB
     Switch <-->|Ethernet Backhaul| DecoNode1
     Switch <-->|Ethernet Backhaul| DecoNode2
 
-    DecoMain <-.->|Wi-Fi Access| ClientsMain
-    DecoNode1 <-.->|Wi-Fi Access| ClientsNode1
-    DecoNode2 <-.->|Wi-Fi Access| ClientsNode2
+    DecoMain <-.->|Indecision Ranch 5Ghz| ClientsMain
+    DecoNode1 <-.->|Indecision Ranch 5Ghz| ClientsNode1
+    DecoNode2 <-.->|Indecision Ranch 5Ghz| ClientsNode2
 
 ```
 
