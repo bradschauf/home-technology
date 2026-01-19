@@ -38,7 +38,12 @@ flowchart TB
 
 ```
 
-# Implementation--
+# Troubleshooting
+
+- Restart the modem manually
+- Restart via the Xfinity app if this local restart does not fix the issue. DHCP gets reset when Xfinity resets the modem.
+
+# Initial Implementation--
 
 ## Phase 1 — Pre-Stage the Deco Mesh (No Outage)
 
