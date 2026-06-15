@@ -10,10 +10,10 @@ flowchart TB
 
     subgraph LAN_ZONE["Trusted Home Network"]
         %% Layer 1 - Main Switch
-        Switch["Gigabit Switch<br/>Legrand Structured Media Box"]
+        Switch["Netgear MS308E<br/>8-Port Switch<br/>Legrand Structured Media Box"]
 
         %% Layer 2 - Living Room Switch
-        LRSwitch["Switch<br/>Living Room"]
+        LRSwitch["Netgear MS308E<br/>8-Port Switch<br/>Living Room"]
 
         %% Layer 3 - Decco Units
         DeccoMain["Decco X55<br/>Primary Node (Living Room)<br/>Router / NAT / Firewall / DHCP"]
@@ -85,6 +85,22 @@ Decco X55 Nodes (Office, Garage — mesh backhaul via switch)
     │
 Clients
 ```
+
+# Network Equipment
+
+## Switches — Netgear MS308E-100NAS
+
+Two Netgear MS308E 8-port multi-gigabit unmanaged plus switches.
+
+| Location | IP Address | Admin Page |
+|----------|-----------|------------|
+| Legrand Structured Media Box | 192.168.68.62 | http://192.168.68.62/g/4726405376036baf5188333976e86fb8 |
+| Living Room | 192.168.68.70 | http://192.168.68.70/g/8ad03da8d74e4a6c67234430027fa86e |
+
+**Notes:**
+- Passwords stored in 1Password
+- IP addresses may change if DHCP leases renew — use the **Netgear Discovery Tool** to locate them
+- Admin pages are accessible via the URLs above (include unique device tokens in the path)
 
 # Troubleshooting
 
