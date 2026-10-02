@@ -1,114 +1,132 @@
 # Current Network Diagram
 
+**ISP:** Wyyred Fiber (installed 2026-09-29). Fiber runs into the house directly into the Calix router — no separate modem.
+
 ```mermaid
 flowchart TB
     %% ===== Zones =====
     subgraph WAN_ZONE["Untrusted - ISP Network"]
         Internet((Internet))
-        Modem["Arris S34<br/>Cable Modem (Bridge Only)"]
+        Fiber["Wyyred Fiber<br/>Fiber drop into the house"]
     end
 
     subgraph LAN_ZONE["Trusted Home Network"]
-        %% Layer 1 - Main Switch
-        Switch["Netgear MS308E<br/>8-Port Switch<br/>Legrand Structured Media Box"]
+        %% Layer 1 - Calix Router / Gateway
+        Router["Calix GS5239XG<br/>Fiber Router / Gateway (Master Closet)<br/>Router / NAT / Firewall / DHCP + Wi-Fi"]
 
-        %% Layer 2 - Living Room Switch
-        LRSwitch["Netgear MS308E<br/>8-Port Switch<br/>Living Room"]
+        %% Layer 2 - Calix Mesh
+        Mesh["Calix GigaSpire BLAST 2<br/>Mesh Satellite (Office)"]
 
-        %% Layer 3 - Decco Units
-        DeccoMain["Decco X55<br/>Primary Node (Living Room)<br/>Router / NAT / Firewall / DHCP"]
-        DeccoNode2["Decco X55<br/>Node 2 (Office)"]
-        DeccoNode3["Decco X55<br/>Node 3 (Garage)"]
+        %% Layer 2 - Switches
+        LRSwitch["Netgear MS308E<br/>8-Port Switch<br/>Living Room / Legrand Media Box"]
+        OfficeSwitch["Netgear MS308E<br/>8-Port Switch<br/>Office"]
 
-        %% Layer 4 - Client Devices
-        ClientsMain["Client Devices<br/>Wi-Fi and Wired"]
-        ClientsNode2["Client Devices<br/>Wi-Fi and Wired"]
-        ClientsNode3["Client Devices<br/>Wi-Fi and Wired"]
+        %% Layer 3 - Client Devices
+        ClientsRouter["Client Devices<br/>Wi-Fi and Wired"]
+        ClientsMesh["Client Devices<br/>Wi-Fi and Wired"]
 
-        %% Layer 5 - IoT Devices
-        subgraph IOT_ZONE["IoT Network — SSID: Indecision Ranch"]
+        %% Layer 4 - IoT Devices
+        subgraph IOT_ZONE["IoT Network — SSID: SchaufIOT (2.4 GHz)"]
             direction LR
             Brilliant["Brilliant Home<br/>Control Panel"] ~~~ GarageMain["Genie Garage Door<br/>Main Garage"] ~~~ GarageRV["Genie Garage Door<br/>RV Garage"] ~~~ ThermoMaster["Honeywell ProSeries<br/>Thermostat (Master)"] ~~~ ThermoGuest["Honeywell ProSeries<br/>Thermostat (Guest)"]
         end
     end
 
     %% ===== Links =====
-    Internet <-->|ISP| Modem
-    Modem <-->|WAN| Switch
+    Internet <-->|ISP| Fiber
+    Fiber <-->|Fiber / WAN| Router
 
-    %% Layer 1 to Layer 2
-    Switch <-->|Ethernet| LRSwitch
-    Switch <-->|Ethernet Backhaul| DeccoNode2
-    Switch <-->|Ethernet Backhaul| DeccoNode3
+    %% Router to switches and mesh
+    Router <-->|Ethernet| LRSwitch
+    Router <-->|Mesh Backhaul| Mesh
+    Mesh <-->|Ethernet| OfficeSwitch
 
-    %% Layer 2 to Layer 3
-    LRSwitch <-->|Ethernet| DeccoMain
+    %% Wi-Fi to clients (Schauf 5/6 GHz)
+    Router <-.->|Schauf 5/6 GHz| ClientsRouter
+    Mesh <-.->|Schauf 5/6 GHz| ClientsMesh
 
-    %% Layer 3 to Layer 4 (5Ghz Wi-Fi)
-    DeccoMain <-.->|Indecision Ranch 5Ghz| ClientsMain
-    DeccoNode2 <-.->|Indecision Ranch 5Ghz| ClientsNode2
-    DeccoNode3 <-.->|Indecision Ranch 5Ghz| ClientsNode3
-
-    %% Layer 4 to Layer 5 (IoT Wi-Fi)
-    DeccoMain <-.->|Indecision Ranch| IOT_ZONE
-    DeccoNode2 <-.->|Indecision Ranch| IOT_ZONE
-    DeccoNode3 <-.->|Indecision Ranch| IOT_ZONE
+    %% IoT Wi-Fi (SchaufIOT 2.4 GHz)
+    Router <-.->|SchaufIOT 2.4 GHz| IOT_ZONE
+    Mesh <-.->|SchaufIOT 2.4 GHz| IOT_ZONE
 ```
 
 **Key facts:**
-- The Arris S34 cable modem is a bridge only — no routing, no DHCP
-- The Decco X55 primary node acts as the router, NAT gateway, firewall, and DHCP server
-- All Decco nodes are in Router mode (not Access Point mode)
-- IoT devices connect to a separate SSID: "Indecision Ranch"
-- Primary client SSID: "Indecision Ranch 5Ghz"
+- Fiber runs directly into the Calix GS5239XG router — there is no separate modem/ONT box to document
+- The Calix GS5239XG is the router, NAT gateway, firewall, DHCP server, and primary Wi-Fi access point
+- The Calix GigaSpire BLAST 2 (GM2028) mesh satellite (in the office) extends Wi-Fi coverage
+- The Calix router sits in the Legrand media box in the master bedroom closet (same spot as the old equipment)
+- Primary client SSID: **Schauf** (5 GHz + 6 GHz)
+- IoT SSID: **SchaufIOT** (2.4 GHz)
+- Both Macs (office) use 2.5 GbE adapters into the office switch
 
 ## IoT Devices
 
 | Device | Location | SSID |
 |--------|----------|------|
-| Brilliant Home Control Panel | — | Indecision Ranch |
-| Genie Garage Door (Main) | Main Garage | Indecision Ranch |
-| Genie Garage Door (RV) | RV Garage | Indecision Ranch |
-| Honeywell ProSeries Thermostat (Master) | Master | Indecision Ranch |
-| Honeywell ProSeries Thermostat (Guest) | Guest | Indecision Ranch |
+| Brilliant Home Control Panel | — | SchaufIOT |
+| Genie Garage Door (Main) | Main Garage | SchaufIOT |
+| Genie Garage Door (RV) | RV Garage | SchaufIOT |
+| Honeywell ProSeries Thermostat (Master) | Master | SchaufIOT |
+| Honeywell ProSeries Thermostat (Guest) | Guest | SchaufIOT |
 
 ## Final Topology
 
 ```
-Arris S34 Cable Modem (bridge only)
+Wyyred Fiber (fiber drop into the house)
     │
-Gigabit Switch
+Calix GS5239XG Router / Gateway (Master Closet)  ← Router / NAT / Firewall / DHCP + Wi-Fi
+    ├── Netgear MS308E Switch (Living Room)
+    └── Calix GigaSpire BLAST 2 Mesh (Office) ── Netgear MS308E Switch (Office) ── Macs (2.5 GbE)
     │
-Decco X55 Primary (Living Room)  ← Router / NAT / Firewall / DHCP
-    │
-Decco X55 Nodes (Office, Garage — mesh backhaul via switch)
-    │
-Clients
+Clients (Wi-Fi: Schauf 5/6 GHz, SchaufIOT 2.4 GHz)
 ```
 
 # Network Equipment
+
+## Router / Gateway — Calix GS5239XG
+
+Wyyred-provided fiber router. Fiber terminates directly into this unit; it handles routing, NAT, firewall, DHCP, and primary Wi-Fi.
+
+| Field | Value |
+|-------|-------|
+| Model | Calix GS5239XG |
+| Role | Router / NAT / Firewall / DHCP + Wi-Fi AP |
+| Location | Master Bedroom Closet / Legrand Media Box |
+| Admin IP | 192.168.1.1 |
+| Management | Wyyred / Calix app *(to verify)* |
+| Credentials | 1Password |
+
+## Mesh Satellite — Calix GigaSpire BLAST
+
+Mesh unit extending Wi-Fi into the office.
+
+| Field | Value |
+|-------|-------|
+| Model | Calix GigaSpire BLAST 2 (GM2028) |
+| Location | Office |
+| Backhaul | *(to verify — wireless or wired to Calix router)* |
 
 ## Switches — Netgear MS308E-100NAS
 
 Two Netgear MS308E 8-port multi-gigabit unmanaged plus switches.
 
-| Location | IP Address | Admin Page |
-|----------|-----------|------------|
-| Legrand Structured Media Box | 192.168.68.62 | http://192.168.68.62/g/4726405376036baf5188333976e86fb8 |
-| Living Room | 192.168.68.70 | http://192.168.68.70/g/8ad03da8d74e4a6c67234430027fa86e |
+| Location | Device Name | IP Address | Admin Page |
+|----------|-------------|-----------|------------|
+| Living Room / Legrand Media Box | Living Room Switch | 192.168.1.171 | http://192.168.1.171/ |
+| Office | Legrand OfficeSwitch | 192.168.1.219 | http://192.168.1.219/ |
 
 **Notes:**
+- The LAN subnet changed to **192.168.1.x** (router at 192.168.1.1) when the Calix router replaced the Decco (old subnet was 192.168.68.x). Re-check switch IPs with the **Netgear Discovery Tool** and update the table above.
 - Passwords stored in 1Password
-- IP addresses may change if DHCP leases renew — use the **Netgear Discovery Tool** to locate them
-- Admin pages are accessible via the URLs above (include unique device tokens in the path)
+- Admin pages include unique device tokens in the URL path
 
 # Troubleshooting
 
-- Restart the modem manually
-- Restart via the Xfinity app if this local restart does not fix the issue. DHCP gets reset when Xfinity resets the modem.
-- If Decco does not get a WAN IP: power-cycle the modem, then the Decco primary. The modem may need to re-learn the new MAC address.
-- If clients get 169.254.x.x addresses: confirm Decco DHCP is enabled in router mode settings.
-- If old devices still have Firewalla-subnet IPs: release/renew DHCP or reboot the client.
+- Restart the Calix GS5239XG router manually (power-cycle).
+- If the router has no internet: check the fiber connection and the status LEDs on the Calix unit; contact Wyyred support if the fiber link is down.
+- If clients get 169.254.x.x addresses: confirm the Calix router DHCP is active and the client is on the correct SSID.
+- If a device still has an old 192.168.68.x (Decco-era) IP: release/renew DHCP or reboot the client.
+- If the office mesh/Wi-Fi drops: check the Calix GigaSpire BLAST satellite backhaul to the router.
 
 # Cutover Procedure (Firewalla → Decco Router)
 
@@ -163,6 +181,107 @@ Two Netgear MS308E 8-port multi-gigabit unmanaged plus switches.
    * No double NAT
    * No stale DHCP leases from Firewalla subnet
    * Speed test shows improvement over previous 500 Mbps cap
+
+---
+
+# Historical: Xfinity Cable + Decco X55 Router
+
+**Status:** Retired 2026-09-29 — replaced by Wyyred Fiber and the Calix GS5239XG router. Decco X55 units removed from service.
+
+Under this configuration the Arris S34 cable modem ran as a bridge and the Decco X55 mesh (in Router mode) handled routing/NAT/firewall/DHCP, on the 192.168.68.x subnet.
+
+## Network Diagram
+
+```mermaid
+flowchart TB
+    %% ===== Zones =====
+    subgraph WAN_ZONE["Untrusted - ISP Network"]
+        Internet((Internet))
+        Modem["Arris S34<br/>Cable Modem (Bridge Only)"]
+    end
+
+    subgraph LAN_ZONE["Trusted Home Network"]
+        %% Layer 1 - Main Switch
+        Switch["Netgear MS308E<br/>8-Port Switch<br/>Legrand Structured Media Box"]
+
+        %% Layer 2 - Living Room Switch
+        LRSwitch["Netgear MS308E<br/>8-Port Switch<br/>Living Room"]
+
+        %% Layer 3 - Decco Units
+        DeccoMain["Decco X55<br/>Primary Node (Living Room)<br/>Router / NAT / Firewall / DHCP"]
+        DeccoNode2["Decco X55<br/>Node 2 (Office)"]
+        DeccoNode3["Decco X55<br/>Node 3 (Garage)"]
+
+        %% Layer 4 - Client Devices
+        ClientsMain["Client Devices<br/>Wi-Fi and Wired"]
+        ClientsNode2["Client Devices<br/>Wi-Fi and Wired"]
+        ClientsNode3["Client Devices<br/>Wi-Fi and Wired"]
+
+        %% Layer 5 - IoT Devices
+        subgraph IOT_ZONE_HIST["IoT Network — SSID: Indecision Ranch"]
+            direction LR
+            Brilliant["Brilliant Home<br/>Control Panel"] ~~~ GarageMain["Genie Garage Door<br/>Main Garage"] ~~~ GarageRV["Genie Garage Door<br/>RV Garage"] ~~~ ThermoMaster["Honeywell ProSeries<br/>Thermostat (Master)"] ~~~ ThermoGuest["Honeywell ProSeries<br/>Thermostat (Guest)"]
+        end
+    end
+
+    %% ===== Links =====
+    Internet <-->|ISP| Modem
+    Modem <-->|WAN| Switch
+
+    %% Layer 1 to Layer 2
+    Switch <-->|Ethernet| LRSwitch
+    Switch <-->|Ethernet Backhaul| DeccoNode2
+    Switch <-->|Ethernet Backhaul| DeccoNode3
+
+    %% Layer 2 to Layer 3
+    LRSwitch <-->|Ethernet| DeccoMain
+
+    %% Layer 3 to Layer 4 (5Ghz Wi-Fi)
+    DeccoMain <-.->|Indecision Ranch 5Ghz| ClientsMain
+    DeccoNode2 <-.->|Indecision Ranch 5Ghz| ClientsNode2
+    DeccoNode3 <-.->|Indecision Ranch 5Ghz| ClientsNode3
+
+    %% Layer 4 to Layer 5 (IoT Wi-Fi)
+    DeccoMain <-.->|Indecision Ranch| IOT_ZONE_HIST
+    DeccoNode2 <-.->|Indecision Ranch| IOT_ZONE_HIST
+    DeccoNode3 <-.->|Indecision Ranch| IOT_ZONE_HIST
+```
+
+**Key facts (historical):**
+- The Arris S34 cable modem was a bridge only — no routing, no DHCP
+- The Decco X55 primary node acted as the router, NAT gateway, firewall, and DHCP server
+- All Decco nodes were in Router mode (not Access Point mode)
+- IoT SSID: "Indecision Ranch"; primary client SSID: "Indecision Ranch 5Ghz"
+- LAN subnet: 192.168.68.x
+
+## Final Topology (historical)
+
+```
+Arris S34 Cable Modem (bridge only)
+    │
+Gigabit Switch
+    │
+Decco X55 Primary (Living Room)  ← Router / NAT / Firewall / DHCP
+    │
+Decco X55 Nodes (Office, Garage — mesh backhaul via switch)
+    │
+Clients
+```
+
+## Switch IPs (historical, 192.168.68.x subnet)
+
+| Location | IP Address | Admin Page |
+|----------|-----------|------------|
+| Legrand Structured Media Box | 192.168.68.62 | http://192.168.68.62/g/4726405376036baf5188333976e86fb8 |
+| Living Room | 192.168.68.70 | http://192.168.68.70/g/8ad03da8d74e4a6c67234430027fa86e |
+
+## Troubleshooting (historical — cable/Decco era)
+
+- Restart the modem manually
+- Restart via the Xfinity app if this local restart does not fix the issue. DHCP gets reset when Xfinity resets the modem.
+- If Decco does not get a WAN IP: power-cycle the modem, then the Decco primary. The modem may need to re-learn the new MAC address.
+- If clients get 169.254.x.x addresses: confirm Decco DHCP is enabled in router mode settings.
+- If old devices still have Firewalla-subnet IPs: release/renew DHCP or reboot the client.
 
 ---
 
