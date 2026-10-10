@@ -576,6 +576,18 @@ plus the one-time ~$250–280 of domain transfers (which prepay a year each).
   inventory.
 - **schaufwerks.com rebuild** (Weebly site, placeholder for now).
 
+## 3.8 Backlog (consider, not committed)
+
+- **Google Search Console: consolidate to Domain properties.** Currently each site is
+  a URL-prefix property (`https://<domain>/`), which only covers that exact scheme+host.
+  A **Domain property** (verified by one DNS TXT in Route 53) covers the whole domain —
+  all subdomains + http/https — in a single view. Nice-to-have tidy-up now that sites are
+  multi-part (e.g. bradschauf.com = homepage + /blog + /videos). All current URL-prefix
+  properties are already verified and working, so this is optional, not a fix. If done:
+  Search Console → Add property → Domain → it issues a TXT → add to Route 53 → verify.
+  Applies to the 4 verified properties: bradschauf.com, jimnewmann.com,
+  catholicfunctions.com, flockfunctions.com.
+
 ## 4. Notes
 - catholicfunctions.com and flockfunctions.com are already on Route 53 and hosted
   separately; excluded from this migration except as reference.

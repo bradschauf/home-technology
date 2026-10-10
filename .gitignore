@@ -11,3 +11,4 @@ migration-data/*.log
 migration-data/zonefiles/
 
 # Keep in repo (reference/scripts): *.sh, records/, r53-batches/, zone-ids/, ns-sets/
+migration-data/contact-schaufwerks.json
