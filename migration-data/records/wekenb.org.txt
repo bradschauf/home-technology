@@ -1,0 +1,30 @@
+; ===== wekenb.org (from ns1.bluehost.com) =====
+wekenb.org.		86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2026093000 86400 7200 3600000 300
+wekenb.org.		86400	IN	NS	ns1.bluehost.com.
+wekenb.org.		86400	IN	NS	ns2.bluehost.com.
+wekenb.org.		30	IN	A	50.87.221.44
+wekenb.org.		14400	IN	MX	0 mail.wekenb.org.
+wekenb.org.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+www.wekenb.org.		14400	IN	CNAME	wekenb.org.
+wekenb.org.		30	IN	A	50.87.221.44
+www.wekenb.org.		14400	IN	CNAME	wekenb.org.
+www.wekenb.org.		14400	IN	CNAME	wekenb.org.
+wekenb.org.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+mail.wekenb.org.	30	IN	A	50.87.221.44
+ftp.wekenb.org.		14400	IN	CNAME	wekenb.org.
+wekenb.org.		30	IN	A	50.87.221.44
+ftp.wekenb.org.		14400	IN	CNAME	wekenb.org.
+ftp.wekenb.org.		14400	IN	CNAME	wekenb.org.
+wekenb.org.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+cpanel.wekenb.org.	14400	IN	CNAME	wekenb.org.
+wekenb.org.		30	IN	A	50.87.221.44
+cpanel.wekenb.org.	14400	IN	CNAME	wekenb.org.
+cpanel.wekenb.org.	14400	IN	CNAME	wekenb.org.
+wekenb.org.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+webmail.wekenb.org.	14400	IN	CNAME	wekenb.org.
+wekenb.org.		30	IN	A	50.87.221.44
+webmail.wekenb.org.	14400	IN	CNAME	wekenb.org.
+webmail.wekenb.org.	14400	IN	CNAME	wekenb.org.
+wekenb.org.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+autodiscover.wekenb.org. 30	IN	A	50.87.221.44
+autoconfig.wekenb.org.	30	IN	A	50.87.221.44

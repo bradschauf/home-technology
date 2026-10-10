@@ -1,0 +1,32 @@
+; ===== flightoftheshroud.com (from ns1.bluehost.com) =====
+flightoftheshroud.com.	86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2026040700 86400 7200 3600000 300
+flightoftheshroud.com.	86400	IN	NS	ns2.bluehost.com.
+flightoftheshroud.com.	86400	IN	NS	ns1.bluehost.com.
+flightoftheshroud.com.	30	IN	A	50.87.221.44
+flightoftheshroud.com.	3600	IN	MX	10 flightoftheshroud.com.
+flightoftheshroud.com.	3600	IN	MX	0 mail.flightoftheshroud.com.
+flightoftheshroud.com.	14400	IN	TXT	"v=spf1 +mx +a +ip4:50.87.221.44 ~all"
+www.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+flightoftheshroud.com.	30	IN	A	50.87.221.44
+www.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+www.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+flightoftheshroud.com.	14400	IN	TXT	"v=spf1 +mx +a +ip4:50.87.221.44 ~all"
+mail.flightoftheshroud.com. 30	IN	A	50.87.221.44
+ftp.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+flightoftheshroud.com.	30	IN	A	50.87.221.44
+ftp.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+ftp.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+flightoftheshroud.com.	14400	IN	TXT	"v=spf1 +mx +a +ip4:50.87.221.44 ~all"
+cpanel.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+flightoftheshroud.com.	30	IN	A	50.87.221.44
+cpanel.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+cpanel.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+flightoftheshroud.com.	14400	IN	TXT	"v=spf1 +mx +a +ip4:50.87.221.44 ~all"
+webmail.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+flightoftheshroud.com.	30	IN	A	50.87.221.44
+webmail.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+webmail.flightoftheshroud.com. 14400 IN	CNAME	flightoftheshroud.com.
+flightoftheshroud.com.	14400	IN	TXT	"v=spf1 +mx +a +ip4:50.87.221.44 ~all"
+autodiscover.flightoftheshroud.com. 30 IN A	50.87.221.44
+autoconfig.flightoftheshroud.com. 30 IN	A	50.87.221.44
+_dmarc.flightoftheshroud.com. 14400 IN	TXT	"v=DMARC1; p=none"

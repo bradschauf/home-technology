@@ -1,0 +1,22 @@
+; ===== shelbieschauf.com (from ns1.bluehost.com) =====
+shelbieschauf.com.	86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2022042000 86400 7200 3600000 300
+shelbieschauf.com.	86400	IN	NS	ns2.bluehost.com.
+shelbieschauf.com.	86400	IN	NS	ns1.bluehost.com.
+shelbieschauf.com.	30	IN	A	50.87.221.44
+shelbieschauf.com.	14400	IN	MX	0 mail.shelbieschauf.com.
+shelbieschauf.com.	14400	IN	TXT	"v=spf1 a mx ptr include:bluehost.com ?all"
+www.shelbieschauf.com.	14400	IN	CNAME	shelbieschauf.com.
+shelbieschauf.com.	30	IN	A	50.87.221.44
+www.shelbieschauf.com.	14400	IN	CNAME	shelbieschauf.com.
+www.shelbieschauf.com.	14400	IN	CNAME	shelbieschauf.com.
+shelbieschauf.com.	14400	IN	TXT	"v=spf1 a mx ptr include:bluehost.com ?all"
+mail.shelbieschauf.com.	30	IN	A	50.87.221.44
+ftp.shelbieschauf.com.	14400	IN	CNAME	shelbieschauf.com.
+shelbieschauf.com.	30	IN	A	50.87.221.44
+ftp.shelbieschauf.com.	14400	IN	CNAME	shelbieschauf.com.
+ftp.shelbieschauf.com.	14400	IN	CNAME	shelbieschauf.com.
+shelbieschauf.com.	14400	IN	TXT	"v=spf1 a mx ptr include:bluehost.com ?all"
+cpanel.shelbieschauf.com. 30	IN	A	50.87.221.44
+webmail.shelbieschauf.com. 30	IN	A	50.87.221.44
+autodiscover.shelbieschauf.com.	30 IN	A	50.87.221.44
+autoconfig.shelbieschauf.com. 30 IN	A	50.87.221.44

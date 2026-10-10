@@ -1,0 +1,31 @@
+{
+  "Comment": "Phase1 import schauf.org",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "schauf.org.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.schauf.org.",
+        "Type": "CNAME",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "schauf.org."
+          }
+        ]
+      }
+    }
+  ]
+}

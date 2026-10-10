@@ -1,0 +1,31 @@
+{
+  "Comment": "Phase1 import wekenb.org",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "wekenb.org.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.wekenb.org.",
+        "Type": "CNAME",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "wekenb.org."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "Comment": "Phase1 import theschaufs.com",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "theschaufs.com.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "theschaufs.com.",
+        "Type": "MX",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "20 mailsec.protonmail.ch."
+          },
+          {
+            "Value": "10 mail.protonmail.ch."
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "theschaufs.com.",
+        "Type": "TXT",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "\"protonmail-verification=4d0bd941a44b10c345b9796e0bdffec4b59e2019\""
+          },
+          {
+            "Value": "\"v=spf1 include:_spf.protonmail.ch mx ~all\""
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "_dmarc.theschaufs.com.",
+        "Type": "TXT",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "\"v=DMARC1;p=quarantine;sp=none;adkim=r;aspf=r;pct=100;fo=0;rf=afrf;ri=86400;rua=mailto:brad@schaufs.com\""
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.theschaufs.com.",
+        "Type": "A",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "Comment": "Phase1 import indecisionranch.com",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "indecisionranch.com.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.indecisionranch.com.",
+        "Type": "CNAME",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "indecisionranch.com."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "Comment": "Phase1 import schaufwerks.com",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "schaufwerks.com.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "schaufwerks.com.",
+        "Type": "MX",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "20 mailsec.protonmail.ch."
+          },
+          {
+            "Value": "10 mail.protonmail.ch."
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "schaufwerks.com.",
+        "Type": "TXT",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "\"v=spf1 include:_spf.protonmail.ch mx ~all\""
+          },
+          {
+            "Value": "\"protonmail-verification=d9e0547eca634e0b1577046efcd39a611004b2a3\""
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.schaufwerks.com.",
+        "Type": "CNAME",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "schaufwerks.com."
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "_dmarc.schaufwerks.com.",
+        "Type": "TXT",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "\"v=DMARC1; p=quarantine\""
+          }
+        ]
+      }
+    }
+  ]
+}

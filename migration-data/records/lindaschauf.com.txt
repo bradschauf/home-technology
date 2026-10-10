@@ -1,0 +1,22 @@
+; ===== lindaschauf.com (from ns1.bluehost.com) =====
+lindaschauf.com.	86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2026100100 86400 7200 3600000 300
+lindaschauf.com.	86400	IN	NS	ns1.bluehost.com.
+lindaschauf.com.	86400	IN	NS	ns2.bluehost.com.
+lindaschauf.com.	30	IN	A	50.87.221.44
+lindaschauf.com.	14400	IN	MX	0 mail.lindaschauf.com.
+lindaschauf.com.	14400	IN	TXT	"v=spf1 a mx ptr include:bluehost.com ?all"
+www.lindaschauf.com.	14400	IN	CNAME	lindaschauf.com.
+lindaschauf.com.	30	IN	A	50.87.221.44
+www.lindaschauf.com.	14400	IN	CNAME	lindaschauf.com.
+www.lindaschauf.com.	14400	IN	CNAME	lindaschauf.com.
+lindaschauf.com.	14400	IN	TXT	"v=spf1 a mx ptr include:bluehost.com ?all"
+mail.lindaschauf.com.	30	IN	A	50.87.221.44
+ftp.lindaschauf.com.	14400	IN	CNAME	lindaschauf.com.
+lindaschauf.com.	30	IN	A	50.87.221.44
+ftp.lindaschauf.com.	14400	IN	CNAME	lindaschauf.com.
+ftp.lindaschauf.com.	14400	IN	CNAME	lindaschauf.com.
+lindaschauf.com.	14400	IN	TXT	"v=spf1 a mx ptr include:bluehost.com ?all"
+cpanel.lindaschauf.com.	30	IN	A	50.87.221.44
+webmail.lindaschauf.com. 30	IN	A	50.87.221.44
+autodiscover.lindaschauf.com. 30 IN	A	50.87.221.44
+autoconfig.lindaschauf.com. 30	IN	A	50.87.221.44

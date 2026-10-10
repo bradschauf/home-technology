@@ -1,0 +1,30 @@
+; ===== 2ndaob.com (from ns1.bluehost.com) =====
+2ndaob.com.		7200	IN	SOA	NS1.BLUEHOST.com. root.BLUEHOST.com. 124010419 10800 3600 604800 3600
+2ndaob.com.		86400	IN	NS	ns1.bluehost.com.
+2ndaob.com.		86400	IN	NS	ns2.bluehost.com.
+2ndaob.com.		30	IN	A	50.87.221.44
+2ndaob.com.		14400	IN	MX	0 mail.2ndaob.com.
+2ndaob.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+www.2ndaob.com.		14400	IN	CNAME	2ndaob.com.
+2ndaob.com.		30	IN	A	50.87.221.44
+www.2ndaob.com.		14400	IN	CNAME	2ndaob.com.
+www.2ndaob.com.		14400	IN	CNAME	2ndaob.com.
+2ndaob.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+mail.2ndaob.com.	30	IN	A	50.87.221.44
+ftp.2ndaob.com.		14400	IN	CNAME	2ndaob.com.
+2ndaob.com.		30	IN	A	50.87.221.44
+ftp.2ndaob.com.		14400	IN	CNAME	2ndaob.com.
+ftp.2ndaob.com.		14400	IN	CNAME	2ndaob.com.
+2ndaob.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+cpanel.2ndaob.com.	14400	IN	CNAME	2ndaob.com.
+2ndaob.com.		30	IN	A	50.87.221.44
+cpanel.2ndaob.com.	14400	IN	CNAME	2ndaob.com.
+cpanel.2ndaob.com.	14400	IN	CNAME	2ndaob.com.
+2ndaob.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+webmail.2ndaob.com.	14400	IN	CNAME	2ndaob.com.
+2ndaob.com.		30	IN	A	50.87.221.44
+webmail.2ndaob.com.	14400	IN	CNAME	2ndaob.com.
+webmail.2ndaob.com.	14400	IN	CNAME	2ndaob.com.
+2ndaob.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+autodiscover.2ndaob.com. 30	IN	A	50.87.221.44
+autoconfig.2ndaob.com.	30	IN	A	50.87.221.44

@@ -1,0 +1,36 @@
+; ===== jimnewmann.com (from ns1.bluehost.com) =====
+jimnewmann.com.		86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2026073000 86400 7200 3600000 300
+jimnewmann.com.		86400	IN	NS	ns2.bluehost.com.
+jimnewmann.com.		86400	IN	NS	ns1.bluehost.com.
+jimnewmann.com.		30	IN	A	50.87.221.44
+jimnewmann.com.		14400	IN	MX	0 mail.jimnewmann.com.
+jimnewmann.com.		14400	IN	MX	10 jimnewmann.com.
+jimnewmann.com.		14400	IN	TXT	"google-site-verification=8IAwjW2YQTZ5FTgNGzoxCOKcWZPucMtY2XS9SYcBaJk"
+jimnewmann.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+www.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+jimnewmann.com.		30	IN	A	50.87.221.44
+www.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+www.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+jimnewmann.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+jimnewmann.com.		14400	IN	TXT	"google-site-verification=8IAwjW2YQTZ5FTgNGzoxCOKcWZPucMtY2XS9SYcBaJk"
+mail.jimnewmann.com.	30	IN	A	50.87.221.44
+ftp.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+jimnewmann.com.		30	IN	A	50.87.221.44
+ftp.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+ftp.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+jimnewmann.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+jimnewmann.com.		14400	IN	TXT	"google-site-verification=8IAwjW2YQTZ5FTgNGzoxCOKcWZPucMtY2XS9SYcBaJk"
+cpanel.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+jimnewmann.com.		30	IN	A	50.87.221.44
+cpanel.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+cpanel.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+jimnewmann.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+jimnewmann.com.		14400	IN	TXT	"google-site-verification=8IAwjW2YQTZ5FTgNGzoxCOKcWZPucMtY2XS9SYcBaJk"
+webmail.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+jimnewmann.com.		30	IN	A	50.87.221.44
+webmail.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+webmail.jimnewmann.com.	14400	IN	CNAME	jimnewmann.com.
+jimnewmann.com.		14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+jimnewmann.com.		14400	IN	TXT	"google-site-verification=8IAwjW2YQTZ5FTgNGzoxCOKcWZPucMtY2XS9SYcBaJk"
+autodiscover.jimnewmann.com. 30	IN	A	50.87.221.44
+autoconfig.jimnewmann.com. 30	IN	A	50.87.221.44

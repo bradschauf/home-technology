@@ -1,0 +1,31 @@
+{
+  "Comment": "Phase1 import shelbiestevenson.com",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "shelbiestevenson.com.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.shelbiestevenson.com.",
+        "Type": "CNAME",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "shelbiestevenson.com."
+          }
+        ]
+      }
+    }
+  ]
+}

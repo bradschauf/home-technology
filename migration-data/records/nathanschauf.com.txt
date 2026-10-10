@@ -1,0 +1,22 @@
+; ===== nathanschauf.com (from ns1.bluehost.com) =====
+nathanschauf.com.	86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2022042000 86400 7200 3600000 300
+nathanschauf.com.	86400	IN	NS	ns2.bluehost.com.
+nathanschauf.com.	86400	IN	NS	ns1.bluehost.com.
+nathanschauf.com.	30	IN	A	50.87.221.44
+nathanschauf.com.	14400	IN	MX	0 mail.nathanschauf.com.
+nathanschauf.com.	14400	IN	TXT	"v=spf1 a mx ptr include:bluehost.com ?all"
+www.nathanschauf.com.	14400	IN	CNAME	nathanschauf.com.
+nathanschauf.com.	30	IN	A	50.87.221.44
+www.nathanschauf.com.	14400	IN	CNAME	nathanschauf.com.
+www.nathanschauf.com.	14400	IN	CNAME	nathanschauf.com.
+nathanschauf.com.	14400	IN	TXT	"v=spf1 a mx ptr include:bluehost.com ?all"
+mail.nathanschauf.com.	30	IN	A	50.87.221.44
+ftp.nathanschauf.com.	14400	IN	CNAME	nathanschauf.com.
+nathanschauf.com.	30	IN	A	50.87.221.44
+ftp.nathanschauf.com.	14400	IN	CNAME	nathanschauf.com.
+ftp.nathanschauf.com.	14400	IN	CNAME	nathanschauf.com.
+nathanschauf.com.	14400	IN	TXT	"v=spf1 a mx ptr include:bluehost.com ?all"
+cpanel.nathanschauf.com. 30	IN	A	50.87.221.44
+webmail.nathanschauf.com. 30	IN	A	50.87.221.44
+autodiscover.nathanschauf.com. 30 IN	A	50.87.221.44
+autoconfig.nathanschauf.com. 30	IN	A	50.87.221.44

@@ -1,0 +1,31 @@
+; ===== lilsproutdoodles.com (from ns1.bluehost.com) =====
+lilsproutdoodles.com.	86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2026100300 86400 7200 3600000 300
+lilsproutdoodles.com.	86400	IN	NS	ns2.bluehost.com.
+lilsproutdoodles.com.	86400	IN	NS	ns1.bluehost.com.
+lilsproutdoodles.com.	30	IN	A	50.87.221.44
+lilsproutdoodles.com.	14400	IN	MX	10 lilsproutdoodles.com.
+lilsproutdoodles.com.	14400	IN	MX	0 mail.lilsproutdoodles.com.
+lilsproutdoodles.com.	14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+www.lilsproutdoodles.com. 14400	IN	CNAME	lilsproutdoodles.com.
+lilsproutdoodles.com.	30	IN	A	50.87.221.44
+www.lilsproutdoodles.com. 14400	IN	CNAME	lilsproutdoodles.com.
+www.lilsproutdoodles.com. 14400	IN	CNAME	lilsproutdoodles.com.
+lilsproutdoodles.com.	14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+mail.lilsproutdoodles.com. 30	IN	A	50.87.221.44
+ftp.lilsproutdoodles.com. 14400	IN	CNAME	lilsproutdoodles.com.
+lilsproutdoodles.com.	30	IN	A	50.87.221.44
+ftp.lilsproutdoodles.com. 14400	IN	CNAME	lilsproutdoodles.com.
+ftp.lilsproutdoodles.com. 14400	IN	CNAME	lilsproutdoodles.com.
+lilsproutdoodles.com.	14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+cpanel.lilsproutdoodles.com. 14400 IN	CNAME	lilsproutdoodles.com.
+lilsproutdoodles.com.	30	IN	A	50.87.221.44
+cpanel.lilsproutdoodles.com. 14400 IN	CNAME	lilsproutdoodles.com.
+cpanel.lilsproutdoodles.com. 14400 IN	CNAME	lilsproutdoodles.com.
+lilsproutdoodles.com.	14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+webmail.lilsproutdoodles.com. 14400 IN	CNAME	lilsproutdoodles.com.
+lilsproutdoodles.com.	30	IN	A	50.87.221.44
+webmail.lilsproutdoodles.com. 14400 IN	CNAME	lilsproutdoodles.com.
+webmail.lilsproutdoodles.com. 14400 IN	CNAME	lilsproutdoodles.com.
+lilsproutdoodles.com.	14400	IN	TXT	"v=spf1 a mx include:websitewelcome.com ~all"
+autodiscover.lilsproutdoodles.com. 30 IN A	50.87.221.44
+autoconfig.lilsproutdoodles.com. 30 IN	A	50.87.221.44

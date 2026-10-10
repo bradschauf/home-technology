@@ -58,6 +58,11 @@ flowchart TB
 - Primary client SSID: **Schauf** (5 GHz + 6 GHz)
 - IoT SSID: **SchaufIOT** (2.4 GHz)
 - Both Macs (office) use 2.5 GbE adapters into the office switch
+- **DNS resolvers: Cloudflare `1.1.1.1` / `1.0.0.1`** (set on the Calix router 2026-10-08,
+  so the whole LAN uses them via DHCP). Changed from the prior ISP/default resolvers
+  because a stale cached DNSSEC `SERVFAIL` on a freshly-migrated domain
+  (lilsproutdoodles.com) kept the LAN from resolving it while Cloudflare had already
+  cleared. Cloudflare also validates DNSSEC but recovers faster.
 
 ## IoT Devices
 
@@ -95,6 +100,7 @@ Wyyred-provided fiber router. Fiber terminates directly into this unit; it handl
 | Admin IP | 192.168.1.1 |
 | Management | Wyyred / Calix app *(to verify)* |
 | Credentials | 1Password |
+| DNS servers | Cloudflare `1.1.1.1` / `1.0.0.1` (set 2026-10-08; served to LAN via DHCP) |
 
 ## Mesh Satellite — Calix GigaSpire BLAST
 
@@ -127,6 +133,10 @@ Two Netgear MS308E 8-port multi-gigabit unmanaged plus switches.
 - If clients get 169.254.x.x addresses: confirm the Calix router DHCP is active and the client is on the correct SSID.
 - If a device still has an old 192.168.68.x (Decco-era) IP: release/renew DHCP or reboot the client.
 - If the office mesh/Wi-Fi drops: check the Calix GigaSpire BLAST satellite backhaul to the router.
+- If a specific domain won't resolve on the LAN but works elsewhere: likely a stale cached
+  DNS answer (e.g. a DNSSEC `SERVFAIL` after a domain migration). The router uses Cloudflare
+  (1.1.1.1/1.0.0.1), which recovers quickly; on a client, flush DNS
+  (`sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`) or try an incognito window.
 
 # Cutover Procedure (Firewalla → Decco Router)
 

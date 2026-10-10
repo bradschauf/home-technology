@@ -1,0 +1,76 @@
+{
+  "Comment": "Phase1 import bradschauf.com",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "bradschauf.com.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "bradschauf.com.",
+        "Type": "MX",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "10 mail.protonmail.ch."
+          },
+          {
+            "Value": "20 mailsec.protonmail.ch."
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "bradschauf.com.",
+        "Type": "TXT",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "\"v=spf1 +ip4:50.87.221.44 +include:_spf.protonmail.ch +mx ~all\""
+          },
+          {
+            "Value": "\"protonmail-verification=db814a767b5f214f22460727a6b26da1f792693a\""
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "_dmarc.bradschauf.com.",
+        "Type": "TXT",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "\"v=DMARC1; p=quarantine\""
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.bradschauf.com.",
+        "Type": "A",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    }
+  ]
+}

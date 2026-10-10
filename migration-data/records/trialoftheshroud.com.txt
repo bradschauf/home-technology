@@ -1,0 +1,9 @@
+; ===== trialoftheshroud.com (from ns1.bluehost.com) =====
+trialoftheshroud.com.	86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2026082606 86400 7200 3600000 300
+trialoftheshroud.com.	86400	IN	NS	ns2.bluehost.com.
+trialoftheshroud.com.	86400	IN	NS	ns1.bluehost.com.
+trialoftheshroud.com.	30	IN	A	50.87.221.44
+www.trialoftheshroud.com. 14400	IN	CNAME	trialoftheshroud.com.
+trialoftheshroud.com.	30	IN	A	50.87.221.44
+www.trialoftheshroud.com. 14400	IN	CNAME	trialoftheshroud.com.
+www.trialoftheshroud.com. 14400	IN	CNAME	trialoftheshroud.com.

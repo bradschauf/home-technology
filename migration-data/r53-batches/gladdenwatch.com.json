@@ -1,0 +1,44 @@
+{
+  "Comment": "Phase1 import gladdenwatch.com",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "gladdenwatch.com.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "50.87.221.44"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.gladdenwatch.com.",
+        "Type": "CNAME",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "gladdenwatch.com."
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "_dmarc.gladdenwatch.com.",
+        "Type": "TXT",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "\"v=DMARC1; p=none\""
+          }
+        ]
+      }
+    }
+  ]
+}

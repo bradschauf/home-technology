@@ -1,0 +1,30 @@
+; ===== schauf.org (from ns1.bluehost.com) =====
+schauf.org.		86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2025031800 86400 7200 3600000 300
+schauf.org.		14400	IN	NS	ns1.bluehost.com.
+schauf.org.		14400	IN	NS	ns2.bluehost.com.
+schauf.org.		30	IN	A	50.87.221.44
+schauf.org.		14400	IN	MX	5 alt2.aspmx.l.google.com.
+schauf.org.		14400	IN	MX	10 aspmx2.googlemail.com.
+schauf.org.		14400	IN	MX	10 aspmx3.googlemail.com.
+schauf.org.		14400	IN	MX	1 aspmx.l.google.com.
+schauf.org.		14400	IN	MX	5 alt1.aspmx.l.google.com.
+schauf.org.		14400	IN	TXT	"v=spf1 +a +mx +ip4:74.220.219.54 ?all"
+www.schauf.org.		14400	IN	CNAME	schauf.org.
+schauf.org.		30	IN	A	50.87.221.44
+www.schauf.org.		14400	IN	CNAME	schauf.org.
+www.schauf.org.		14400	IN	CNAME	schauf.org.
+schauf.org.		14400	IN	TXT	"v=spf1 +a +mx +ip4:74.220.219.54 ?all"
+mail.schauf.org.	14400	IN	CNAME	mail.theschaufs.com.
+mail.theschaufs.com.	14400	IN	CNAME	ghs.google.com.
+mail.schauf.org.	14400	IN	CNAME	mail.theschaufs.com.
+mail.schauf.org.	14400	IN	CNAME	mail.theschaufs.com.
+mail.theschaufs.com.	14400	IN	CNAME	ghs.google.com.
+ftp.schauf.org.		14400	IN	CNAME	schauf.org.
+schauf.org.		30	IN	A	50.87.221.44
+ftp.schauf.org.		14400	IN	CNAME	schauf.org.
+ftp.schauf.org.		14400	IN	CNAME	schauf.org.
+schauf.org.		14400	IN	TXT	"v=spf1 +a +mx +ip4:74.220.219.54 ?all"
+cpanel.schauf.org.	30	IN	A	50.87.221.44
+webmail.schauf.org.	30	IN	A	50.87.221.44
+autodiscover.schauf.org. 30	IN	A	50.87.221.44
+autoconfig.schauf.org.	30	IN	A	50.87.221.44

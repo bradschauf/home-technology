@@ -1,0 +1,25 @@
+; ===== sadff.com (from ns1.bluehost.com) =====
+sadff.com.		86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2021020300 86400 7200 3600000 300
+sadff.com.		86400	IN	NS	ns2.bluehost.com.
+sadff.com.		86400	IN	NS	ns1.bluehost.com.
+sadff.com.		30	IN	A	198.49.23.145
+sadff.com.		30	IN	A	198.49.23.144
+sadff.com.		30	IN	A	198.185.159.144
+sadff.com.		30	IN	A	198.185.159.145
+www.sadff.com.		14400	IN	CNAME	ext-cust.squarespace.com.
+ext-cust.squarespace.com. 30	IN	A	162.241.225.21
+www.sadff.com.		14400	IN	CNAME	ext-cust.squarespace.com.
+www.sadff.com.		14400	IN	CNAME	ext-cust.squarespace.com.
+ext-cust.squarespace.com. 14400	IN	TXT	"v=spf1 ip4:162.241.225.21 a mx include:websitewelcome.com ~all"
+mail.sadff.com.		30	IN	A	50.87.221.44
+ftp.sadff.com.		14400	IN	CNAME	sadff.com.
+sadff.com.		30	IN	A	198.49.23.144
+sadff.com.		30	IN	A	198.49.23.145
+sadff.com.		30	IN	A	198.185.159.144
+sadff.com.		30	IN	A	198.185.159.145
+ftp.sadff.com.		14400	IN	CNAME	sadff.com.
+ftp.sadff.com.		14400	IN	CNAME	sadff.com.
+cpanel.sadff.com.	30	IN	A	50.87.221.44
+webmail.sadff.com.	30	IN	A	50.87.221.44
+autodiscover.sadff.com.	30	IN	A	50.87.221.44
+autoconfig.sadff.com.	30	IN	A	50.87.221.44

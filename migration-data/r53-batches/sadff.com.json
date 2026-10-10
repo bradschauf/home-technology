@@ -1,0 +1,53 @@
+{
+  "Comment": "Phase1 import sadff.com",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "sadff.com.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "198.49.23.145"
+          },
+          {
+            "Value": "198.49.23.144"
+          },
+          {
+            "Value": "198.185.159.144"
+          },
+          {
+            "Value": "198.185.159.145"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "www.sadff.com.",
+        "Type": "CNAME",
+        "TTL": 14400,
+        "ResourceRecords": [
+          {
+            "Value": "ext-cust.squarespace.com."
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "ext-cust.squarespace.com.sadff.com.",
+        "Type": "A",
+        "TTL": 30,
+        "ResourceRecords": [
+          {
+            "Value": "162.241.225.21"
+          }
+        ]
+      }
+    }
+  ]
+}

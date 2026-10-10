@@ -1,0 +1,19 @@
+; ===== bradschauf.com (from ns1.bluehost.com) =====
+bradschauf.com.		86400	IN	SOA	ns1.bluehost.com. root.box2232.bluehost.com. 2026100300 86400 7200 3600000 300
+bradschauf.com.		86400	IN	NS	ns1.bluehost.com.
+bradschauf.com.		86400	IN	NS	ns2.bluehost.com.
+bradschauf.com.		30	IN	A	50.87.221.44
+bradschauf.com.		14400	IN	MX	10 mail.protonmail.ch.
+bradschauf.com.		14400	IN	MX	20 mailsec.protonmail.ch.
+bradschauf.com.		14400	IN	TXT	"v=spf1 +ip4:50.87.221.44 +include:_spf.protonmail.ch +mx ~all"
+bradschauf.com.		14400	IN	TXT	"protonmail-verification=db814a767b5f214f22460727a6b26da1f792693a"
+bradschauf.com.		14400	IN	TXT	"google-site-verification=iC36qDFcsgW-QBXo2IAXbqEQYeEexQE98Cs8sVwxFe0"
+ftp.bradschauf.com.	14400	IN	CNAME	bradschauf.com.
+bradschauf.com.		30	IN	A	50.87.221.44
+ftp.bradschauf.com.	14400	IN	CNAME	bradschauf.com.
+ftp.bradschauf.com.	14400	IN	CNAME	bradschauf.com.
+bradschauf.com.		14400	IN	TXT	"v=spf1 +ip4:50.87.221.44 +include:_spf.protonmail.ch +mx ~all"
+bradschauf.com.		14400	IN	TXT	"protonmail-verification=db814a767b5f214f22460727a6b26da1f792693a"
+bradschauf.com.		14400	IN	TXT	"google-site-verification=iC36qDFcsgW-QBXo2IAXbqEQYeEexQE98Cs8sVwxFe0"
+cpanel.bradschauf.com.	30	IN	A	50.87.221.44
+_dmarc.bradschauf.com.	14400	IN	TXT	"v=DMARC1; p=quarantine"

@@ -1,0 +1,13 @@
+# Migration secrets & personal data — never commit
+migration-data/secrets/
+migration-data/*.auth
+migration-data/contact.json
+
+# Transient migration payloads — large, not for version control
+migration-data/staging/
+migration-data/staging-wp/
+migration-data/staging-media/
+migration-data/*.log
+migration-data/zonefiles/
+
+# Keep in repo (reference/scripts): *.sh, records/, r53-batches/, zone-ids/, ns-sets/
