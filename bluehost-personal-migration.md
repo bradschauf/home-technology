@@ -606,6 +606,14 @@ screenshots) migrated the same way earlier.
 - **LESSON:** site migrations that follow only linked content miss "dark" URL-only
   dirs. Before decommissioning any old host, `ls`/`du` the full docroot and reconcile
   EVERY subdir against what's migrated — don't rely on what the homepage links to.
+- **NGINX autoindex for dark galleries:** old Bluehost (Apache) had directory listing
+  ON by default, so browsing a gallery dir like `/Kayla/` showed a clickable file list.
+  NGINX defaults listing OFF → bare dir URLs returned 403. Fixed by adding an
+  `autoindex on` location block (regex-scoped to ONLY the gallery dir names) in
+  `/etc/nginx/sites-available/bradschauf.com`, so `/Kayla/` etc. list files again
+  while the homepage/blog/root are unaffected. Config backed up as `.bak.<ts>` on the
+  server. If bradschauf.com's nginx config is ever regenerated/replaced, re-add that
+  autoindex block or these dir listings will 403 again.
 
 ## 4. Notes
 - catholicfunctions.com and flockfunctions.com are already on Route 53 and hosted
