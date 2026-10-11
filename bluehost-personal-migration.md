@@ -588,6 +588,25 @@ plus the one-time ~$250–280 of domain transfers (which prepay a year each).
   Applies to the 4 verified properties: bradschauf.com, jimnewmann.com,
   catholicfunctions.com, flockfunctions.com.
 
+## 3.9 "Dark" galleries under bradschauf/ (migrated 2026-10-11)
+
+The old `public_html/bradschauf/` had ~13 GB of UNLINKED content ("dark sites" — served
+but no links point to them; URL-only access) that the original site-focused migration
+missed. Caught before Bluehost cancellation and migrated to schauf-server
+`/var/www/bradschauf.com/public/<dir>/`, preserving the `bradschauf.com/<dir>/` URLs
+and the dark/unlinked behavior. Dirs: Kayla (7.8G), TFD26 (2.3G), TFD25 (1.3G),
+gfhoa (1.1G), work, porsche, shane, airtug, images, gigi, auntkaren, Ringtones,
+parenting, voice, Lizzie, 2026alaska, resume, 911, edgestone-nw, euro-monkey,
+son-in-law-interview, oldsite, web, HCR26, packages. Verified serving over HTTPS.
+Local backup in `migration-data/staging-dark/`. whiterabbit/ (518M, 267 startup
+screenshots) migrated the same way earlier.
+- **TODO (later):** fold these into the bradschauf.com repo (its own GitHub repo) so
+  they're version-controlled + deploy via deploy.sh, rather than living only on the
+  server. Not urgent — they're safe and serving now.
+- **LESSON:** site migrations that follow only linked content miss "dark" URL-only
+  dirs. Before decommissioning any old host, `ls`/`du` the full docroot and reconcile
+  EVERY subdir against what's migrated — don't rely on what the homepage links to.
+
 ## 4. Notes
 - catholicfunctions.com and flockfunctions.com are already on Route 53 and hosted
   separately; excluded from this migration except as reference.
