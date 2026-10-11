@@ -111,7 +111,9 @@ on the box (plugin now unused since HTTP-01 is the chosen path).
 **Separate (catholicfunctions project):** VPS retirement + Lightsail promotion/
 right-sizing moved to `~/GitHub/catholicfunctions/VPS-RETIREMENT-AND-RIGHTSIZING.md`.
 
-**Follow-ups:** rotate gladdenwatch Google API keys; rebuild schaufwerks.com (open-
+**Follow-ups:** gladdenwatch Google API keys — Brad opted NOT to rotate (low risk: Maps
+key is already public in page source by design; real safeguard is referrer restriction
++ billing cap, not secrecy); rebuild schaufwerks.com (open-
 source options: WooCommerce recommended — see below); build out theschaufs.com +
 schauf.org; hand off sadff.com; delete `staging*/` dirs (~77 GB) after cutover.
 
@@ -572,8 +574,11 @@ plus the one-time ~$250–280 of domain transfers (which prepay a year each).
     ARE authoritative; safe to push directly.
   - **bradschauf.com splits 3 ways:** homepage = GitHub repo; `/blog` = WordPress
     (Bluehost pull); `/videos` media = S3+CloudFront.
-- **Rotate gladdenwatch Google API keys** (Maps + Geocoding) — surfaced during
-  inventory.
+- **gladdenwatch Google API keys** — surfaced during inventory. Brad opted NOT to
+  rotate (acceptable: Maps key is public-by-design in browser page source; Geocoding
+  key is server-side; the real protection is HTTP-referrer restriction + billing quota,
+  not secrecy). Optional: confirm referrer restriction + billing cap in Google Cloud
+  Console sometime.
 - **schaufwerks.com rebuild** (Weebly site, placeholder for now).
 
 ## 3.8 Backlog (consider, not committed)
