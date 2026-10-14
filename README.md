@@ -9,6 +9,7 @@ onto AWS.
 | Doc | What it covers |
 |---|---|
 | [home-network.md](home-network.md) | Home network diagram, equipment (Calix fiber router, mesh, switches), IoT devices, DNS (Cloudflare), troubleshooting, and historical configs. |
+| [launchd-jobs.md](launchd-jobs.md) | Scheduled `launchd` jobs on Brad's Mac (`com.bradschauf.*`): scripts, schedules, enabled state, and how to manage them. |
 | [server.schauf-server.md](server.schauf-server.md) | The personal web server (AWS Lightsail, `44.231.156.226`): specs, SSH access, NGINX/PHP/MariaDB stack, hosted sites, upload-dir notes, backups, cost. |
 | [server.catholicfunctions.com.md](server.catholicfunctions.com.md) | Reference doc for the catholicfunctions server (separate project). |
 | [websites.md](websites.md) | Catalog of every personal website: type, docroot, database, repo, mail, migration status. |
