@@ -212,3 +212,12 @@ year each.
 - Launched `schauf-server` (ubuntu_22_04 / small_3_0), key `schauf-server-key`,
   static IP `44.231.156.226`, firewall 22/80/443. SSH verified. Clean OS, no stack
   installed yet.
+
+## ⚠️ Upload directories — keep ubuntu-writable
+`/var/www/bradschauf.com/public/speedmon` and `/whiterabbit` are written to by the Mac
+mini / white-rabbit scripts via scp as the `ubuntu` user, so they MUST stay
+`ubuntu:www-data` mode `775` (not the usual `www-data:www-data`). A blanket
+`sudo chown -R www-data:www-data /var/www/bradschauf.com/public` (e.g. after a content
+push) breaks uploads with "Permission denied". If uploads start failing, re-run:
+`sudo chown -R ubuntu:www-data <dir> && sudo chmod 775 <dir>` on those two dirs.
+(Happened 2026-10-11 after the dark-galleries push; fixed same day.)

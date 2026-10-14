@@ -1,20 +1,62 @@
 # Bluehost → AWS Personal Migration
 
-## ▶ RESUME HERE (last updated 2026-10-08)
+## ▶ RESUME HERE (last updated 2026-10-11)
 
-**Status: Phases 1–4 done. CUTOVER DONE for 15 domains (now live on schauf-server
-over HTTPS). Remaining: cut over lilsproutdoodles when its transfer finishes; then
-decommission Bluehost (gated on schaufwerks rebuild).**
+**Status: migration functionally COMPLETE. All 16 personal sites live on schauf-server
+(AWS Lightsail, 44.231.156.226) over HTTPS; all 18 personal domain registrations now
+at AWS (Route 53 Domains). Only schaufwerks.com remains on Bluehost (live store,
+pending rebuild) — the one blocker to cancelling Bluehost hosting.**
 
-**CUTOVER (2026-10-08):** 17/18 transfers completed → nameservers auto-flipped to
-Route 53. Bluehost dropped jimnewmann.com post-transfer (went down), triggering the
-cutover. Flipped A records 50.87.221.44 → 44.231.156.226 and issued Let's Encrypt
-certs (certbot --nginx) for 15 domains — ALL verified live over public HTTPS:
-jimnewmann, 2ndaob, bradschauf (home+blog+videos/CloudFront), flightoftheshroud,
-gladdenwatch (PHP+DB), indecisionranch, lindaschauf, nathanschauf, schauf.org,
-shelbieschauf, shelbiestevenson, theschaufs, trialoftheshroud (→flightoftheshroud),
-wekenb.org (placeholder), schaufs.com (→bradschauf.com). Scripts:
-`migration-data/cutover-flip.sh` + `cutover-certs.sh`.
+### Key facts for a fresh session
+- **New server:** schauf-server, Lightsail, `44.231.156.226`, Ubuntu 22.04, NGINX +
+  PHP 8.3 + MariaDB. SSH: `~/theschaufs.sh` or `~/schaufserver.sh` (ubuntu@…,
+  key `~/.ssh/schauf-server.pem`). Docroots `/var/www/<domain>/public`.
+- **Old Bluehost box (still up, being decommissioned):** `~/old-theschaufs.sh`
+  (theschau@50.87.221.44, key `~/.ssh/schauf.priv`). cPHulk blocks rapid SSH — use
+  ONE connection, not many.
+- **Mac mini** (`brad@schaufserver.local`, passwordless via schauf.priv): runs speedmon
+  manually; already repointed to new server.
+- DNS = Route 53 (acct 566105881027). bradschauf media = S3 `bradschauf-media` +
+  CloudFront `d1xmnyfjt1ssl3.cloudfront.net`. Router DNS = Cloudflare 1.1.1.1/1.0.0.1.
+
+### What's DONE
+- All 16 sites cut over + HTTPS (certbot --nginx). 18 registrations transferred to AWS.
+- WordPress (6), gladdenwatch PHP+DB, static sites, park pages, redirects — all live.
+- Mail fixed on 4 ProtonMail domains (MX+SPF+DKIM+protonmail-verification+DMARC);
+  Google verification TXT restored (bradschauf, jimnewmann).
+- "Dark" unlinked galleries (~13 GB: Kayla, TFD25/26, gfhoa, etc.) + whiterabbit (518M,
+  267 screenshots) migrated to bradschauf.com docroot; NGINX `autoindex on` enabled for
+  those dirs (match old Apache listing). speedmon page + CSV uploader (mac mini) live.
+- All deploy scripts (bradschauf, lilsproutdoodles, jimnewmann, flightoftheshroud,
+  gladdenwatch, speedmon, white-rabbit) repointed to schauf-server + tested.
+- Local staging dirs deleted (~90 GB reclaimed). gladdenwatch Google key rotation:
+  Brad opted out (low risk).
+
+### What's LEFT (priority order)
+1. **schaufwerks.com rebuild** — wife's LIVE Weebly commerce store, STILL on Bluehost
+   (A→50.87.221.44). Cart runs via Weebly `w_api/Handler.php` (only works on Bluehost);
+   files are a dead storefront on NGINX. Rebuild as a real store (WooCommerce rec.),
+   migrate catalog + payments (plan WITH wife), then cut over. ONLY blocker to
+   cancelling Bluehost hosting. RISK: if Bluehost drops it post-transfer, store breaks.
+2. **catholicfunctions.com + flockfunctions.com** — registration transfers IN_PROGRESS
+   (Network Solutions→AWS, ~days). WHEN DONE: set WHOIS registrant to **SchaufWerks, LLC**
+   via `aws route53domains update-domain-contact` using gitignored
+   `migration-data/contact-schaufwerks.json` (registrant+admin+tech).
+3. **Cancel Bluehost HOSTING account** — after #1. (4 throwaway domains left to expire
+   Feb/Apr 2027; sadff.com stays on Squarespace, hand off later.)
+4. Backlog: fold dark galleries into bradschauf.com repo; build out theschaufs.com +
+   schauf.org (park pages now); Search Console → Domain properties.
+
+### SEPARATE project (not this migration)
+catholicfunctions VPS retirement + Lightsail right-sizing →
+`~/GitHub/catholicfunctions/VPS-RETIREMENT-AND-RIGHTSIZING.md`.
+
+---
+### (historical cutover detail — 2026-10-08)
+**CUTOVER:** 17/18 transfers completed → nameservers auto-flipped to Route 53. Bluehost
+dropped jimnewmann.com post-transfer (went down), triggering the cutover. Flipped A
+records 50.87.221.44 → 44.231.156.226 and issued Let's Encrypt certs for 15 domains.
+Scripts: `migration-data/cutover-flip.sh` + `cutover-certs.sh`.
 
 **⚠️ 4 DOMAINS DISCOVERED via Bluehost domain-list export (2026-10-08) — were MISSED
 by the original cPanel-based inventory because they have NO website (parked at
