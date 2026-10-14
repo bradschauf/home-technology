@@ -9,7 +9,7 @@ Weekday numbers in `StartCalendarInterval`: 0 = Sunday, 6 = Saturday.
 
 | Label | Script | Schedule | Enabled | Logs |
 |---|---|---|---|---|
-| `com.bradschauf.check-sites` | `~/check-sites.sh` | every 300s (5 min) | ✅ enabled | `~/logs/check-sites.log` |
+| `com.bradschauf.check-sites` | `~/GitHub/home-technology/scripts/check-sites.sh` | every 300s (5 min) | ✅ enabled | `~/logs/check-sites.log` |
 | `com.bradschauf.text-kids` | `~/GitHub/text-messages/text-kids.sh` | Sat 08:00 | ✅ enabled | `~/logs/text-kids.err` |
 | `com.bradschauf.text-kids-prayer` | `~/GitHub/text-messages/text-kids-prayer.sh` | Sun 08:00 | ✅ enabled | `~/logs/text-kids-prayer.err` |
 | `com.bradschauf.text-mom-dad-amy` | `~/GitHub/text-messages/text-mom-dad-amy.sh` | Sat 09:00 | ✅ enabled | `~/logs/text-mom-dad-amy.err` |
@@ -29,7 +29,10 @@ Deleted (jobs + plists + loose scripts) as no longer needed:
 ## What each does
 
 - **check-sites** — website uptime monitoring; alerts via iMessage
-  (`~/GitHub/text-messages/send-imessage.sh` → 858-414-1381). Config `~/websites.json`.
+  (`~/GitHub/text-messages/send-imessage.sh` → 858-414-1381). Script + config now live in
+  this repo at `scripts/check-sites.sh` + `scripts/websites.json` (one version-controlled
+  copy; plist points at the repo path). Has a connectivity preflight: if the Mac is
+  offline, it skips the run silently (no false down-alerts when reconnecting).
 - **text-kids** / **text-kids-prayer** / **text-mom-dad-amy** — scheduled family texts
   (motivational / prayer / family) via the `text-messages` repo scripts.
 

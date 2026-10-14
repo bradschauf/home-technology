@@ -16,6 +16,7 @@ onto AWS.
 | [bluehost-personal-migration.md](bluehost-personal-migration.md) | The full Bluehost→AWS migration record + plan. Has a **▶ RESUME HERE** block at the top with current status and remaining work. |
 | [aws-cost-breakdown.md](aws-cost-breakdown.md) | AWS account cost breakdown (personal vs. catholicfunctions project). |
 | [aws-rightsizing-plan.md](aws-rightsizing-plan.md) | Lightsail right-sizing analysis (mostly catholicfunctions-project; cross-referenced). |
+| [scripts/](scripts/) | Version-controlled home for personal utility scripts (check-sites + its config, SSH helpers). One true copy; home-dir symlinks for the interactive ones. See `scripts/README.md`. |
 | `migration-data/` | Scripts + DNS data used during the migration (R53 records, transfer/cutover scripts, etc.). Secrets and large staging are gitignored. |
 
 ## Current state (2026-10-11)
