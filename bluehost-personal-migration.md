@@ -5,8 +5,8 @@
 **Status: migration functionally COMPLETE. All personal sites — including
 schaufwerks.com — now live on schauf-server (AWS Lightsail, 44.231.156.226) over
 HTTPS; all 18 personal domain registrations now at AWS (Route 53 Domains).
-NOTHING personal remains on Bluehost. Bluehost shared hosting can now be cancelled
-(push for a prorated refund — precedent: VPS case BIL-119730).**
+NOTHING personal remains on Bluehost. Bluehost shared hosting account cancelled and
+prorated refund received. Migration fully wrapped.**
 
 ### Key facts for a fresh session
 - **New server:** schauf-server, Lightsail, `44.231.156.226`, Ubuntu 22.04, NGINX +
@@ -69,9 +69,9 @@ box (`50.87.221.44`) vs schauf-server + S3. Findings + actions (see §5.7 for de
    a content-preserving render, not a working store.
 2. **catholicfunctions.com + flockfunctions.com** — ✅ DONE (transferred to AWS + WHOIS set
    to SchaufWerks, LLC 2026-10-11, registrant+admin+tech).
-3. **Cancel Bluehost HOSTING account** — now UNBLOCKED (schaufwerks off Bluehost). Push for
-   prorated refund (precedent BIL-119730). (4 throwaway domains left to expire Feb/Apr 2027;
-   sadff.com stays on Squarespace, hand off later.)
+3. **Cancel Bluehost HOSTING account** — ✅ DONE. Account cancelled, prorated refund
+   received. (4 throwaway domains left to expire Feb/Apr 2027; sadff.com stays on
+   Squarespace, hand off later.)
 4. Backlog: fold dark galleries into bradschauf.com repo; build out theschaufs.com +
    schauf.org (park pages now); Search Console → Domain properties.
 

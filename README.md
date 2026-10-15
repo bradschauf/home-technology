@@ -26,8 +26,8 @@ onto AWS.
   Domains). bradschauf.com media on S3 + CloudFront.
 - **Nothing left on Bluehost.** schaufwerks.com (wife's ex-Weebly store) is now a static
   render on AWS over HTTPS (recovered 2026-10-15); a real e-commerce rebuild is a separate
-  follow-up, not a Bluehost blocker. The Bluehost shared-hosting account can now be
-  cancelled (push for a prorated refund).
+  follow-up, not a Bluehost blocker. The Bluehost shared-hosting account has been cancelled
+  and the prorated refund received.
 - **catholicfunctions / flockfunctions:** separate project; its Bluehost VPS is cancelled
   and it's consolidated on AWS. Its working docs live in the `catholicfunctions` repo.
 
