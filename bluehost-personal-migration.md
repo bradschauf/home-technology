@@ -33,6 +33,29 @@ NOTHING personal remains on Bluehost. Bluehost shared hosting can now be cancell
 - Local staging dirs deleted (~90 GB reclaimed). gladdenwatch Google key rotation:
   Brad opted out (low risk).
 
+### Pre-decommission audit (2026-10-15) — before Bluehost auto-renew lapses
+Brad disabled auto-renew on everything at Bluehost. Did a full read-only diff of the old
+box (`50.87.221.44`) vs schauf-server + S3. Findings + actions (see §5.7 for detail):
+- **Closed 2 content gaps** the original rsync silently skipped:
+  - `bradschauf/Kayla/Kayla-Marie-Wilson-2020.mp4` (4.7 GB memorial video) — restored to
+    docroot + S3 `_recovered-originals/`. Verified streaming over HTTPS.
+  - 9 gigi TIFF originals (`Great_Grandma*.tiff`, `photo2.TIF`) — restored (JPG
+    conversions already existed, so site was never broken; originals now preserved).
+- **wekenb.org (`wekenborg/`, 117 MB WP site, previously EXCLUDED)** — pulled a safety
+  copy to S3 `_recovered-originals/wekenborg-wekenb.org/` (5398 objects) + local. NOT
+  rehosted (still intentionally dropped) — just preserved in case.
+- **6 WordPress/PHP DB dumps** (`dbdumps_migration/`, Oct 3 snapshots) backed up to S3
+  `bradschauf-media/_db-backups-bluehost-20261003/` (weren't stored off Bluehost before).
+- **72 GB `videos/` archive** re-verified in S3 (98 objects, exact byte match).
+- **Removed the Bluehost crontab** (`crontab -r`) — the lone Laravel `schedule:run` for
+  catholicfunctions_app. catholicfunctions runs on AWS now; cron backed up to
+  `migration-data/staging-gap-recovery/crontab-backup-20261015.txt`.
+- **Mail: intentionally NOT backed up** (Brad's call — ProtonMail is the real mail; cPanel
+  boxes unused).
+- All other sites: equal/more files on server (WP regenerates caches); only deltas are
+  Apache `.htaccess`, stale ACME tokens, `.bak` files — all junk. **Everything needed is
+  on AWS; Bluehost can lapse safely.**
+
 ### What's LEFT (priority order)
 1. **schaufwerks.com** — ✅ RENDERING ON AWS over HTTPS (2026-10-15). The old Weebly
    store on Bluehost broke after the registrar transfer (Bluehost dropped the SSL cert +
@@ -866,6 +889,54 @@ it resolves via Route 53 for ~1 hour, then do the ProtonMail domains carefully
 (watch mail), then the rest. Because records are identical, no outage is expected.
 This step is done at the Bluehost control panel (or via Route 53 Domains once
 registration is transferred in Phase 2) — awaiting Brad's go-ahead.
+
+### 5.7 Pre-decommission audit detail (2026-10-15)
+
+Full read-only diff of old Bluehost box (`theschau@50.87.221.44`) against schauf-server
+`/var/www/*/public` and S3, triggered by Brad disabling Bluehost auto-renew. Method:
+`find -type f | wc -l` + byte totals per docroot, both sides; `comm` on file lists for
+any dir where counts differed.
+
+**Content gaps found + fixed** (original migration rsync skipped these):
+
+| File | Size | Why missed | Action |
+|---|---|---|---|
+| `bradschauf/Kayla/Kayla-Marie-Wilson-2020.mp4` | 4.7 GB | large-file skip | → docroot (www-data 644) + S3 `_recovered-originals/Kayla/`. HTTPS 206 range OK. |
+| `bradschauf/gigi/pictures/*.tiff` + `photo2.TIF` (9 files) | ~21 MB | `.tiff/.TIF` not transferred | → docroot + S3. (JPG versions already present → site never broke.) |
+
+Junk deltas deliberately NOT copied: `.DS_Store`, `kayla-laugh.ovw`, `Thumbs.db`,
+Apache `.htaccess`/`.htaccessold`, stale `.well-known/acme-challenge/*`, `*.bak`.
+
+**wekenb.org (`public_html/wekenborg/`)** — 5398 files / 117,094,144 B. Previously
+EXCLUDED (Brad: not serving, don't move). Brad asked for a safety copy "just in case":
+pulled to local `migration-data/staging-gap-recovery/wekenborg/` + S3
+`bradschauf-media/_recovered-originals/wekenborg-wekenb.org/` (5398 objects, exact byte
+match). NOT rehosted — still dropped, just preserved. (One dangling symlink `php.ini`
+→ nonexistent `/home1/...` not uploaded; config only, not content.)
+
+**DB dumps** — `~/dbdumps_migration/*.sql` (6 files, Oct 3 snapshots: bradschauf,
+gladdenwatch, indecisionranch, nathanschauf, shelbieschauf, shelbiestevenson) → S3
+`bradschauf-media/_db-backups-bluehost-20261003/` + local. These are the authoritative
+WP/PHP DB backups; weren't off Bluehost before. (catholicfunctions DB dump
+`~/migration/theschau_cathfunc.sql` is root-owned → unreadable as theschau; it's the
+separate catholicfunctions project, covered by its own `catholicfunctions-db-backups`
+S3 bucket.)
+
+**videos/** — re-verified: Bluehost `bradschauf/videos` = 76,957,556,466 B / 98 files;
+S3 `bradschauf-media/videos/` = 76,957,535,986 B / 98 objects. Match (diff = du block
+overhead).
+
+**Cron killed** — Bluehost crontab had one entry (catholicfunctions_app Laravel
+`schedule:run` every minute). `crontab -r` removed it (now empty). Backed up to
+`migration-data/staging-gap-recovery/crontab-backup-20261015.txt`. catholicfunctions
+runs on AWS; the old-box scheduler was redundant.
+
+**Mail** — intentionally NOT backed up (Brad's standing decision; ProtonMail is live
+mail, cPanel boxes unused).
+
+**Conclusion:** everything needed is on AWS (server docroots + S3). Bluehost shared
+hosting can lapse / be cancelled with no data loss. `staging-gap-recovery/` is gitignored
+(large binaries; S3 is the durable copy).
 
 ---
 

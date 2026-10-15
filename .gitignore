@@ -14,3 +14,4 @@ migration-data/zonefiles/
 # Keep in repo (reference/scripts): *.sh, records/, r53-batches/, zone-ids/, ns-sets/
 migration-data/contact-schaufwerks.json
 migration-data/staging-dark/
+migration-data/staging-gap-recovery/
