@@ -1,11 +1,12 @@
 # Bluehost → AWS Personal Migration
 
-## ▶ RESUME HERE (last updated 2026-10-11)
+## ▶ RESUME HERE (last updated 2026-10-15)
 
-**Status: migration functionally COMPLETE. All 16 personal sites live on schauf-server
-(AWS Lightsail, 44.231.156.226) over HTTPS; all 18 personal domain registrations now
-at AWS (Route 53 Domains). Only schaufwerks.com remains on Bluehost (live store,
-pending rebuild) — the one blocker to cancelling Bluehost hosting.**
+**Status: migration functionally COMPLETE. All personal sites — including
+schaufwerks.com — now live on schauf-server (AWS Lightsail, 44.231.156.226) over
+HTTPS; all 18 personal domain registrations now at AWS (Route 53 Domains).
+NOTHING personal remains on Bluehost. Bluehost shared hosting can now be cancelled
+(push for a prorated refund — precedent: VPS case BIL-119730).**
 
 ### Key facts for a fresh session
 - **New server:** schauf-server, Lightsail, `44.231.156.226`, Ubuntu 22.04, NGINX +
@@ -33,17 +34,21 @@ pending rebuild) — the one blocker to cancelling Bluehost hosting.**
   Brad opted out (low risk).
 
 ### What's LEFT (priority order)
-1. **schaufwerks.com rebuild** — wife's LIVE Weebly commerce store, STILL on Bluehost
-   (A→50.87.221.44). Cart runs via Weebly `w_api/Handler.php` (only works on Bluehost);
-   files are a dead storefront on NGINX. Rebuild as a real store (WooCommerce rec.),
-   migrate catalog + payments (plan WITH wife), then cut over. ONLY blocker to
-   cancelling Bluehost hosting. RISK: if Bluehost drops it post-transfer, store breaks.
-2. **catholicfunctions.com + flockfunctions.com** — registration transfers IN_PROGRESS
-   (Network Solutions→AWS, ~days). WHEN DONE: set WHOIS registrant to **SchaufWerks, LLC**
-   via `aws route53domains update-domain-contact` using gitignored
-   `migration-data/contact-schaufwerks.json` (registrant+admin+tech).
-3. **Cancel Bluehost HOSTING account** — after #1. (4 throwaway domains left to expire
-   Feb/Apr 2027; sadff.com stays on Squarespace, hand off later.)
+1. **schaufwerks.com** — ✅ RENDERING ON AWS over HTTPS (2026-10-15). The old Weebly
+   store on Bluehost broke after the registrar transfer (Bluehost dropped the SSL cert +
+   served a Weebly "page cannot be displayed" error). Recovered a static render of the
+   storefront on schauf-server (see §5.4b). A record flipped to `44.231.156.226`,
+   Let's Encrypt cert issued for apex + www (valid → 2027-01-13), HTTP→HTTPS 301.
+   Pages live: Home, Shop, About, Contact — with the original Weebly theme CSS +
+   product photos. NOT functional: cart/checkout + individual product pages (Weebly
+   `w_api/Handler.php` dynamic commerce, not recoverable as static). **Follow-up:** real
+   e-commerce rebuild WITH wife (WooCommerce rec.) when she's ready — the current site is
+   a content-preserving render, not a working store.
+2. **catholicfunctions.com + flockfunctions.com** — ✅ DONE (transferred to AWS + WHOIS set
+   to SchaufWerks, LLC 2026-10-11, registrant+admin+tech).
+3. **Cancel Bluehost HOSTING account** — now UNBLOCKED (schaufwerks off Bluehost). Push for
+   prorated refund (precedent BIL-119730). (4 throwaway domains left to expire Feb/Apr 2027;
+   sadff.com stays on Squarespace, hand off later.)
 4. Backlog: fold dark galleries into bradschauf.com repo; build out theschaufs.com +
    schauf.org (park pages now); Search Console → Domain properties.
 
@@ -75,9 +80,10 @@ NOTE: this keeps the Bluehost *domain-registrar* account open until ~Apr 2027 (h
 separate from the hosting account we're decommissioning). Not a gate on anything.
 
 **STILL ON BLUEHOST (not cut over):**
-- **schaufwerks.com** — live Weebly commerce, A still → 50.87.221.44. RISK: if
-  Bluehost drops it post-transfer (as it did jimnewmann), the store breaks and there's
-  no replacement yet. Priority: rebuild (WooCommerce) ASAP.
+- **schaufwerks.com** — ✅ RESOLVED 2026-10-15. Was live Weebly commerce; Bluehost
+  dropped it post-transfer (exactly the predicted risk — store broke). Recovered a
+  static render on schauf-server (A flipped to 44.231.156.226, HTTPS live). See §5.4b.
+  Still TODO: real store rebuild with wife (WooCommerce rec.).
 - **sadff.com** — on Squarespace, A unchanged (points at Squarespace), handing off later.
 - **lilsproutdoodles.com** — ✅ DONE. Transfer complete, A flipped to 44.231.156.226,
   TLS cert issued (CN=lilsproutdoodles.com), HTTPS 200 "Lil Sprout Doodles".
@@ -406,13 +412,9 @@ briefly surfaced during inventory).
   - trialoftheshroud.com ✅ → 301 redirect to flightoftheshroud.com (it only redirected on Bluehost; no content to migrate)
   - lindaschauf.com ✅ — no real site existed (empty default.html). Added a blank
     `index.html` placeholder → 200. Fine as-is.
-  - schaufwerks.com ✅ (placeholder) — **Linda's/wife's site**, a Weebly export that
-    needs recreating later (Weebly relies on Apache `.htaccess` rewrites NGINX
-    doesn't use). Original Weebly files preserved under
-    `/var/www/schaufwerks.com/public/` (about.html, BLOG/, SHOP/,
-    working-weebly-files-02242022.zip). Added a "coming back soon" `index.html`
-    placeholder → 200. **TODO: rebuild schaufwerks.com** (new site, not a 1:1 Weebly
-    port).
+  - schaufwerks.com ✅ — **wife's store**, now a static render on AWS over HTTPS
+    (recovered 2026-10-15). See §5.4b for the full recovery. **TODO: real store
+    rebuild with wife (WooCommerce rec.).**
 - [x] WordPress sites (5) migrated to schauf-server: files rsync'd, DBs imported,
   wp-config DB passwords updated. All verified on server (no DB errors):
   - indecisionranch.com → WP at docroot; 301→https (correct, needs cert at cutover)
@@ -455,11 +457,11 @@ briefly surfaced during inventory).
 - [ ] (Optional courtesy) export any cPanel mailbox before cancellation during Phase 7 backup.
 
 ### Phase 6 — Cutover ⬜
-- [ ] 🛑 **EXCLUDE schaufwerks.com from cutover** — it's a LIVE Weebly commerce store
-  whose cart/checkout runs through Weebly's `w_api/Handler.php` (only works on
-  Bluehost). Flipping its A record = dead storefront = lost sales. Keep its A record
-  on `50.87.221.44` until a real replacement store is built. See websites.md.
-- [ ] Per site (EXCEPT schaufwerks.com), change the Route 53 A record from 50.87.221.44 → schauf-server static IP `44.231.156.226`.
+- [x] ~~EXCLUDE schaufwerks.com from cutover~~ — SUPERSEDED 2026-10-15. Bluehost broke
+  the Weebly store post-transfer, so the "keep it live on Bluehost" plan was moot. Flipped
+  it to AWS as a static render (A → 44.231.156.226, HTTPS live). See §5.4b. Commerce
+  rebuild deferred.
+- [x] Per site, change the Route 53 A record from 50.87.221.44 → schauf-server static IP `44.231.156.226` (incl. schaufwerks.com, 2026-10-15).
 - [ ] Verify HTTPS, forms, WordPress admin, mail flow.
 - [ ] Monitor for 24–48 h.
 - [ ] Update `~/check-sites.sh` / `~/websites.json` monitoring + the steering "Monitored Sites" list to point at the new server where relevant.
@@ -468,10 +470,10 @@ briefly surfaced during inventory).
 ### Phase 7 — Decommission Bluehost ⬜
 - [ ] Confirm all domains, sites, and mailboxes fully served from AWS.
 - [ ] **GATE: `staging.catholicfunctions.com` moved off the shared server** (it's on `50.87.221.44`, THIS server — see §5.3b) — move to the catholicfunctions VPS or temporarily to personal Lightsail before cancelling the shared account, or staging breaks.
-- [ ] 🛑 **GATE: schaufwerks.com replacement store LIVE** — wife's live e-commerce
-  store, commerce depends on Weebly's `w_api/Handler.php` on Bluehost. Do NOT cancel
-  the shared account until a real replacement store is built and schaufwerks.com
-  points at it. Cancelling kills her storefront + sales. (See websites.md.)
+- [x] ~~GATE: schaufwerks.com replacement store LIVE~~ — CLEARED 2026-10-15. schaufwerks.com
+  is off Bluehost (static render on AWS over HTTPS, see §5.4b). The old Weebly commerce is
+  gone either way (Bluehost broke it). No remaining schaufwerks dependency on Bluehost.
+  (Real store rebuild with wife is a separate follow-up, NOT a decommission gate.)
 - [ ] Confirm sadff.com DNS flipped to Route 53 + registration in Brad's custody (so it survives Bluehost closure; see §5.3).
 - [ ] Take a final full backup of the Bluehost account (archive locally).
 - [ ] Cancel Bluehost hosting; confirm all registrations transferred out.
@@ -621,7 +623,8 @@ plus the one-time ~$250–280 of domain transfers (which prepay a year each).
   key is server-side; the real protection is HTTP-referrer restriction + billing quota,
   not secrecy). Optional: confirm referrer restriction + billing cap in Google Cloud
   Console sometime.
-- **schaufwerks.com rebuild** (Weebly site, placeholder for now).
+- **schaufwerks.com real store rebuild** — static render is live on AWS (§5.4b); a working
+  e-commerce rebuild (WooCommerce rec.) is still TODO, to plan WITH wife.
 
 ## 3.8 Backlog (consider, not committed)
 
@@ -796,6 +799,57 @@ strict staging/prod DB separation.
 
 - **Tier 1 (used, verify most carefully):** bradschauf.com, jimnewmann.com, flightoftheshroud.com
 - **Tier 2 (lower use):** everything else.
+
+### 5.4b schaufwerks.com — store recovery onto AWS (2026-10-15)
+
+**Background.** schaufwerks.com (wife's store) was a live Weebly commerce site that we
+deliberately kept on Bluehost during cutover (cart/checkout ran through Weebly's dynamic
+`w_api/Handler.php`). After the registrar transfer completed, **Bluehost broke it** — it
+served the `*.bluehost.com` fallback cert and a Weebly "Error. Page cannot be displayed"
+page. The store was effectively dead on Bluehost with no path to fix it (needed Bluehost
+root/WHM we don't have). Goal shifted to: **preserve all content on AWS and get the store
+to at least RENDER** (full commerce rebuild deferred, to be done with wife).
+
+**Content preserved in 3 places** (160 files, 97 MB — mostly product photos):
+- Local: `migration-data/staging-schaufwerks/` (gitignored — large binaries; S3 is the
+  durable copy).
+- S3: `s3://schaufwerks-archive/schaufwerks-site/` (private bucket, 160 objects).
+- Server: `/var/www/schaufwerks.com/public/` on schauf-server.
+
+**The gap.** The static Bluehost export only had `about.html` + `contact.html` as real
+pages. Home/Shop/Blog were Weebly-*dynamic* (listed in `w_api/w_published_data.txt` as
+`"dynamic": true`) and never existed as static files — the server's `index.html` was a
+234-byte Weebly redirect stub, and `shop.html` didn't exist at all.
+
+**Recovery via Wayback Machine.** Pulled the raw original HTML (using the `id_` suffix:
+`https://web.archive.org/web/<timestamp>id_/<url>` — gives the original with no Wayback
+toolbar injection, verified 0 rewrites) for the 2023 captures that match our export's
+Weebly generation:
+- `index.html` ← snapshot `20230119215503`
+- `shop.html` ← snapshot `20230408140921`
+Both reference `/files/main_style.css` + `/uploads/.../` images — **all present** in our
+preserved copy. about.html + contact.html kept from the export (newer 2025 builds). Blog
+dropped (never captured; per Brad's call — the `/blog.html` nav link now 404s harmlessly).
+(Wayback also had an older 2019 WordPress-era generation — `/blankets/`, `/block-signs/`,
+`/luminaries/`, `/night-lights/` — NOT used; it predates the live Weebly store.)
+
+**Assembly + go-live.**
+1. Dropped the recovered `index.html` + `shop.html` into `/var/www/schaufwerks.com/public/`
+   (old Weebly stub backed up to `index.html.weebly-stub.bak`), www-data:www-data 644.
+2. Verified every local asset resolves + all 4 pages serve 200 (Host-header curl on the box).
+   Existing NGINX block (`/etc/nginx/sites-available/schaufwerks.com`) already pointed at
+   the right docroot.
+3. Flipped R53 apex A `50.87.221.44` → `44.231.156.226` (TTL 300; www CNAME follows apex;
+   ProtonMail MX/SPF/DKIM/DMARC untouched). Change `C03105032E7BO4SYXNBK`, INSYNC.
+4. `certbot --nginx -d schaufwerks.com -d www.schaufwerks.com --redirect` → Let's Encrypt
+   cert valid **→ 2027-01-13**, auto-renew scheduled, HTTP→HTTPS 301.
+
+**Verified live (public internet, HTTPS):** Home, Shop, About, Contact all 200; theme CSS
++ product/background images load with correct content types; www works; HTTP redirects.
+
+**NOT recovered (acceptable — render-only goal):** cart/checkout + individual product
+pages (`/store/pN/...`) — Weebly dynamic commerce, never captured, not static-recoverable.
+Blog. **Follow-up:** real e-commerce rebuild WITH wife (WooCommerce rec.).
 
 ### 5.5 Known cleanups deferred to cutover
 - bradschauf.com SPF still contains `+ip4:50.87.221.44` (old Bluehost IP) — update

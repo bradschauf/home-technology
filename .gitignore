@@ -7,6 +7,7 @@ migration-data/contact.json
 migration-data/staging/
 migration-data/staging-wp/
 migration-data/staging-media/
+migration-data/staging-schaufwerks/
 migration-data/*.log
 migration-data/zonefiles/
 

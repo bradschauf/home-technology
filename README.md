@@ -24,8 +24,10 @@ onto AWS.
 - **Personal sites + domains:** fully migrated to AWS. All 16 sites live on
   **schauf-server** (Lightsail) over HTTPS; all domains registered at AWS (Route 53
   Domains). bradschauf.com media on S3 + CloudFront.
-- **Still on Bluehost:** only **schaufwerks.com** (wife's live Weebly store) — pending a
-  rebuild, which is the last blocker to cancelling the Bluehost shared-hosting account.
+- **Nothing left on Bluehost.** schaufwerks.com (wife's ex-Weebly store) is now a static
+  render on AWS over HTTPS (recovered 2026-10-15); a real e-commerce rebuild is a separate
+  follow-up, not a Bluehost blocker. The Bluehost shared-hosting account can now be
+  cancelled (push for a prorated refund).
 - **catholicfunctions / flockfunctions:** separate project; its Bluehost VPS is cancelled
   and it's consolidated on AWS. Its working docs live in the `catholicfunctions` repo.
 

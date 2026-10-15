@@ -38,7 +38,7 @@ from its GitHub repo (only `/blog` is present so far) — expected.
 | 2ndaob.com | Static | /var/www/2ndaob.com/public | — | no | dropped | ✅ |
 | lilsproutdoodles.com | Static | /var/www/lilsproutdoodles.com/public | — | **yes (new)** | dropped | ✅ |
 | lindaschauf.com | Blank placeholder | /var/www/lindaschauf.com/public | — | no | dropped | ✅ (never a real site) |
-| schaufwerks.com | Weebly (placeholder) | /var/www/schaufwerks.com/public | — | no | ProtonMail | ⚠️ rebuild needed (wife's site) |
+| schaufwerks.com | Static render (ex-Weebly) | /var/www/schaufwerks.com/public | — | **yes** | ProtonMail | ✅ renders on AWS; real store rebuild TODO (wife's site) |
 | theschaufs.com | Park (placeholder) | /var/www/theschaufs.com/public | — | no | ProtonMail | ✅ "coming soon" page; build later |
 | schauf.org | Park (placeholder) | /var/www/schauf.org/public | — | no | dropped (was Google) | ✅ "coming soon" page; build later |
 | sadff.com | Squarespace (external) | n/a — stays on Squarespace | — | no | — | ⛔ hand off to new owner later |
@@ -129,21 +129,25 @@ flockfunctions.com, staging.catholicfunctions.com (see migration doc §5.3a–b)
 - Never a real site (only an empty `default.html` on Bluehost). Blank `index.html`
   placeholder added → 200. Mail: dropped. Repo: none.
 
-### schaufwerks.com ⚠️🛑 Weebly commerce — LIVE STORE, DO NOT CUT OVER
-- **Linda's (wife's) site — a LIVE e-commerce store that generates sales.** Outage =
-  lost orders. This is a hard gate on cutover AND Bluehost cancellation.
-- **How it actually works:** Weebly site exported onto Bluehost (served by Apache,
-  not Weebly's hosting), BUT its commerce is **dynamic** — `.htaccess` routes
-  `/ajax/*` and `index.html` through Weebly's **`w_api/Handler.php`** API handler.
-  The `SHOP/` dir is empty; product/cart/checkout data is NOT in the exported files.
-  So the store only functions where that Weebly handler + its backend live = Bluehost.
-  Copying files to NGINX gives a dead storefront (no cart/checkout).
-- **On schauf-server:** only a "coming back soon" placeholder (NOT a working store).
-  Original export preserved under docroot but non-functional for commerce.
-- 🛑 **GATE:** keep schaufwerks.com's DNS A record on Bluehost `50.87.221.44`.
-  Do NOT flip it at cutover. Do NOT cancel Bluehost until a real replacement store
-  is live.
-- ⚠️ **Rebuild = stand up a real store** (migrate products + payment config; NOT a
+### schaufwerks.com ✅ Static render on AWS (ex-Weebly commerce) — rebuild TODO
+- **Linda's (wife's) site.** Was a LIVE Weebly e-commerce store; **Bluehost broke it**
+  after the registrar transfer (dropped the cert, served a Weebly "page cannot be
+  displayed" error). The store was dead on Bluehost with no fix available to us.
+- **Resolved 2026-10-15:** recovered a static render onto schauf-server and flipped it
+  to AWS over HTTPS. Full write-up: `bluehost-personal-migration.md` §5.4b.
+  - Pages live: Home + Shop (recovered from Wayback Machine 2023 captures) + About +
+    Contact (from the static export), with original Weebly theme CSS + product photos.
+  - A record flipped to `44.231.156.226`; Let's Encrypt cert (apex + www, → 2027-01-13);
+    HTTP→HTTPS 301. ProtonMail records untouched.
+  - Content preserved 3 ways: local `migration-data/staging-schaufwerks/` (gitignored),
+    S3 `s3://schaufwerks-archive/schaufwerks-site/`, and the server docroot.
+- **How the OLD store worked (why it's render-only now):** Weebly commerce was
+  **dynamic** — `.htaccess` routed `/ajax/*` + `index.html` through Weebly's
+  **`w_api/Handler.php`** API handler; product/cart/checkout data lived in Weebly's
+  backend, NOT in the exported files (`SHOP/` was empty). So cart/checkout + individual
+  product pages (`/store/pN/...`) are NOT recoverable as static. The current site
+  renders the storefront content but does not take orders.
+- ⚠️ **Still TODO — real store rebuild** (migrate products + payment config; NOT a
   static file port). Open-source options considered:
   - **WooCommerce (WordPress plugin) — RECOMMENDED.** Fits the existing schauf-server
     LAMP-ish stack (PHP + MariaDB), familiar (5 WP sites already there), self-hosted,
