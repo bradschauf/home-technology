@@ -45,7 +45,9 @@ from its GitHub repo (only `/blog` is present so far) — expected.
 | wekenb.org | WordPress (dead) | not migrated | n/a | no | dropped | ⛔ 403, excluded |
 
 Out of scope entirely (separate infrastructure): catholicfunctions.com,
-flockfunctions.com, staging.catholicfunctions.com (see migration doc §5.3a–b).
+flockfunctions.com, staging.catholicfunctions.com (see migration doc §5.3a–b), and
+tucsonfireretirees.com (a separate Laravel app co-hosted on the CF Lightsail box — see
+`server.tucsonfireretirees.com.md` and the `~/GitHub/TucsonFireRetirees` repo).
 
 ---
 

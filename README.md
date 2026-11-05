@@ -12,6 +12,7 @@ onto AWS.
 | [launchd-jobs.md](launchd-jobs.md) | Scheduled `launchd` jobs on Brad's Mac (`com.bradschauf.*`): scripts, schedules, enabled state, and how to manage them. |
 | [server.schauf-server.md](server.schauf-server.md) | The personal web server (AWS Lightsail, `44.231.156.226`): specs, SSH access, NGINX/PHP/MariaDB stack, hosted sites, upload-dir notes, backups, cost. |
 | [server.catholicfunctions.com.md](server.catholicfunctions.com.md) | Reference doc for the catholicfunctions server (separate project). |
+| [server.tucsonfireretirees.com.md](server.tucsonfireretirees.com.md) | Pointer for the Tucson Fire Retirees platform (separate Laravel app, co-hosted on the CF Lightsail box). Authoritative docs live in the `~/GitHub/TucsonFireRetirees` repo. |
 | [websites.md](websites.md) | Catalog of every personal website: type, docroot, database, repo, mail, migration status. |
 | [bluehost-personal-migration.md](bluehost-personal-migration.md) | The full Bluehost→AWS migration record + plan. Has a **▶ RESUME HERE** block at the top with current status and remaining work. |
 | [aws-cost-breakdown.md](aws-cost-breakdown.md) | AWS account cost breakdown (personal vs. catholicfunctions project). |
