@@ -45,9 +45,18 @@ from the `catholicfunctions` app (de-tenanted).
 
 `brad@theschaufs.com`, `linda@theschaufs.com`.
 
+## Mailboxes (ProtonMail)
+
+Custom domain added Nov 2026 (same pattern as the other Proton domains). Route 53 records: MX
+`mail.protonmail.ch`/`mailsec.protonmail.ch`, SPF `v=spf1 include:_spf.protonmail.ch ~all`, DKIM
+CNAMEs `protonmail`, `protonmail2`, `protonmail3` `._domainkey`, plus the verification TXT. App mail
+still goes through Postmark/SES. Next: confirm Proton tabs are green, create admin@ and no-reply@,
+then DMARC rua + quarantine.
+
 ## Open items (before/after go-live)
 
-- Rotate the Square sandbox token, then wire **production** Square credentials and decide which
-  Square account event money lands in (SchaufWerks, LLC vs. a new TFRA account).
+- Square credentials are now entered in the app (Org Settings → Square payments). Rotate the
+  sandbox token, enter **production** credentials, and decide which Square account event money lands
+  in (SchaufWerks, LLC vs. a new TFRA account).
 - Repoint the DMARC `rua` to a monitored mailbox if aggregate reports are wanted.
 - (Full backlog + the in-flight day-of card-payment fix are tracked in the app repo, not here.)
