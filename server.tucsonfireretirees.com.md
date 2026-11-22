@@ -56,8 +56,9 @@ brad@; raise to quarantine after 1-2 weeks of clean reports.
 
 ## Open items (before/after go-live)
 
-- Square credentials are now entered in the app (Org Settings → Square payments). Rotate the
-  sandbox token, enter **production** credentials, and decide which Square account event money lands
-  in (SchaufWerks, LLC vs. a new TFRA account).
+- Square has two credential sets entered in the app (Org Settings -> Square payments): Sandbox and Production.
+  Each event picks its mode. To go live: enter the Production set (token, location, webhook key), Test connection,
+  reset the test event, switch the event to Production. Choose which Square account receives the money first
+  (SchaufWerks, LLC vs a new TFRA account), and rotate the old plaintext sandbox token.
 - Raise DMARC from `p=none` to `p=quarantine` after 1-2 weeks of clean reports.
 - (Full backlog + the in-flight day-of card-payment fix are tracked in the app repo, not here.)
