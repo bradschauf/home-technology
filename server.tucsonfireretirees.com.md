@@ -38,8 +38,8 @@ from the `catholicfunctions` app (de-tenanted).
   + custom MAIL FROM `mail.tucsonfireretirees.com`, scoped IAM user `tfr-ses-mailer`) is fully
   verified and retained for possible future bulk sending, but is NOT the transactional path.
   From address: `no-reply@tucsonfireretirees.com`.
-- **Payments: Square** is the primary/launch gateway (the org already has Square); Stripe is kept
-  in code as a secondary option. **Square is in SANDBOX** until prod credentials are wired.
+- **Payments: Square** is the default processor (the org already has Square); Stripe is selectable
+  in Org Settings. **Square is in SANDBOX** until prod credentials are wired.
 
 ## First admins
 
@@ -56,9 +56,10 @@ brad@; raise to quarantine after 1-2 weeks of clean reports.
 
 ## Open items (before/after go-live)
 
-- Square has two credential sets entered in the app (Org Settings -> Square payments): Sandbox and Production.
+- The site picks Square or Stripe (Org Settings -> Card processor); each has Sandbox and Production sets in the app database (not `.env`).
   Each event picks its mode. To go live: enter the Production set (token, location, webhook key), Test connection,
   reset the test event, switch the event to Production. Choose which Square account receives the money first
   (SchaufWerks, LLC vs a new TFRA account), and rotate the old plaintext sandbox token.
+- Contact form (`/contact`) emails admin@tucsonfireretirees.com: make sure that Proton mailbox exists.
 - Raise DMARC from `p=none` to `p=quarantine` after 1-2 weeks of clean reports.
 - (Full backlog + the in-flight day-of card-payment fix are tracked in the app repo, not here.)
